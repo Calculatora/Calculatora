@@ -17,5 +17,9 @@ public class GUICalculadora {
 		MiMarco.setSize(150,150);
 		MiMarco.setTitle("Calculadora");  
 		MiMarco.setVisible(true);
+		
+		MiMarco.add(InstanciaDigitos.DamePanel());
+		MiMarco.add(InstanciaOperadores.DamePanel());
+		MiMarco.add(InstanciaResultados.DamePanel());
 	} 
 }

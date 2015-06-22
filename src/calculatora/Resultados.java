@@ -1,0 +1,27 @@
+package calculatora;
+
+import java.awt.Color;
+import java.awt.TextField;
+
+import superClass.Bloque;
+
+public class Resultados extends Bloque {
+
+	static TextField resultado;
+	protected Resultados() {
+		super();
+	}
+	
+	protected Resultados(Color color){
+		super(color);
+	}
+	
+	public TextField dameResultado(){
+		return resultado;
+	}
+
+	public static  void setText(String texto) {
+		resultado.setText(texto);		
+	}
+	
+}

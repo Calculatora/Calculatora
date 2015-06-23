@@ -8,9 +8,9 @@ import calculatora.paneles.Resultados;
 public class GUICalculadora {
 	public GUICalculadora() {
 		Frame MiMarco = new Frame(); 
-		Color colorDigitos = Color.RED;
-		Color colorOperaciones = Color.GREEN;
-		Color colorResultado = Color.YELLOW;
+		Color colorDigitos = new Color(63,207,153);
+		Color colorOperaciones = new Color(0,255,128);
+		Color colorResultado = new Color(60,157,255);
 		Digitos InstanciaDigitos = new Digitos(colorDigitos);
 		Operadores InstanciaOperadores = new Operadores(colorOperaciones);
 		Resultados InstanciaResultados = new Resultados(colorResultado);

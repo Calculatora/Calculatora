@@ -1,6 +1,8 @@
 package calculatora.paneles;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.TextField;
 
 import calculatora.superClass.Bloque;
@@ -15,10 +17,12 @@ public class Resultados extends Bloque {
 	
 	public Resultados(Color color){
 		super();
-		resultado = new TextField("",12);
+		resultado = new TextField("",15);
+		resultado.setPreferredSize(new Dimension(350,20));
 		resultado.setBackground(color);
-		MiPanel.add(resultado);
-		
+		Font fuente=new Font("Dialog", Font.BOLD, 36);
+		resultado.setFont (fuente);	
+		MiPanel.add(resultado);	
 	}
 	
 	public static TextField dameResultado(){

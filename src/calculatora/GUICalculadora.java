@@ -15,13 +15,16 @@ public class GUICalculadora {
 		Operadores InstanciaOperadores = new Operadores(colorOperaciones);
 		Resultados InstanciaResultados = new Resultados(colorResultado);
 		
-		MiMarco.add(InstanciaDigitos.DamePanel(),"Center");
-		MiMarco.add(InstanciaOperadores.DamePanel(),"East");
+		Panel panelCentral = new Panel();
+		panelCentral.add(InstanciaDigitos.DamePanel());
+		panelCentral.add(InstanciaOperadores.DamePanel());
+		MiMarco.add(panelCentral,"Center");
 		MiMarco.add(InstanciaResultados.DamePanel(),"North");
 
 
-		MiMarco.setSize(150,150);
+		MiMarco.setSize(360,435);
 		MiMarco.setTitle("Calculadora");  
 		MiMarco.setVisible(true);
+//		MiMarco.setResizable(false);
 	} 
 }

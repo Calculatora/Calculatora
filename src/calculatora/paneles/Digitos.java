@@ -2,6 +2,8 @@ package calculatora.paneles;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import calculatora.eventos.ControlRaton;
@@ -37,13 +39,16 @@ public class Digitos extends BloqueBotones{
 		Botones[9] = new Boton("9");
 		Botones[10] = new Boton(",");
 		Botones[11] = new Boton("=");
+
+		Font fuente=new Font("Dialog", Font.BOLD, 36);
 		
 		for (int i = Botones.length - 1; i >= 0; i--){
 			MiPanel.add(Botones[i]);
 			Botones[i].addMouseListener(new ControlRaton());
 			Botones[i].setBackground(color);
 			Botones[i].setColorOriginal(color);
-			
+			Botones[i].setPreferredSize(new Dimension(80, 80));
+			Botones[i].setFont (fuente);				
 		}
 		
 		

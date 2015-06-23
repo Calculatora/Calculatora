@@ -13,7 +13,12 @@ public class GUICalculadora {
 		Digitos InstanciaDigitos = new Digitos(colorDigitos);
 		Operadores InstanciaOperadores = new Operadores(colorOperaciones);
 		Resultados InstanciaResultados = new Resultados(colorResultado);
-	
+		
+		MiMarco.add(InstanciaDigitos.DamePanel(),"Center");
+		MiMarco.add(InstanciaOperadores.DamePanel(),"East");
+		MiMarco.add(InstanciaResultados.DamePanel(),"North");
+
+
 		MiMarco.setSize(150,150);
 		MiMarco.setTitle("Calculadora");  
 		MiMarco.setVisible(true);

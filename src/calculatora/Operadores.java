@@ -15,9 +15,19 @@ public class Operadores extends BloqueBotones{
 	}
 	
 	protected Operadores(Color color) {
-		super(color);
-		GridLayout LayoutBotones = new GridLayout(4,3);
+		super();
+		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,0);
+		MiPanel.setLayout(LayoutBotones);
 		Botones = new Button[NUM_BOTONES];
+		Botones[0] = new Button("+");
+		Botones[1] = new Button("-");
+		Botones[2] = new Button("*");
+		Botones[3] = new Button("/");
+		
+		for (int i = 0; i < Botones.length; i++){
+			MiPanel.add(Botones[i]);
+			Botones[i].setBackground(color);
+		}
 	}
 	
 }

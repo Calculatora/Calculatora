@@ -8,15 +8,20 @@ import superClass.Bloque;
 public class Resultados extends Bloque {
 
 	static TextField resultado;
+	
 	protected Resultados() {
 		super();
 	}
 	
 	protected Resultados(Color color){
-		super(color);
+		super();
+		resultado = new TextField("",12);
+		resultado.setBackground(color);
+		MiPanel.add(resultado);
+		
 	}
 	
-	public TextField dameResultado(){
+	public static TextField dameResultado(){
 		return resultado;
 	}
 

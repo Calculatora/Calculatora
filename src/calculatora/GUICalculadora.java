@@ -1,12 +1,13 @@
 package calculatora;
 
 import java.awt.*; 
+
+import calculatora.paneles.Digitos;
+import calculatora.paneles.Operadores;
+import calculatora.paneles.Resultados;
 public class GUICalculadora {
 	public GUICalculadora() {
 		Frame MiMarco = new Frame(); 
-		Panel MiPanel = new Panel();
-		BorderLayout PuntosCardinales = new BorderLayout();
-		MiPanel.setLayout(PuntosCardinales);
 		Color colorDigitos = Color.RED;
 		Color colorOperaciones = Color.GREEN;
 		Color colorResultado = Color.YELLOW;
@@ -22,9 +23,5 @@ public class GUICalculadora {
 		MiMarco.setSize(150,150);
 		MiMarco.setTitle("Calculadora");  
 		MiMarco.setVisible(true);
-		
-		MiMarco.add(InstanciaDigitos.DamePanel());
-		MiMarco.add(InstanciaOperadores.DamePanel());
-		MiMarco.add(InstanciaResultados.DamePanel());
 	} 
 }

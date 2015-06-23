@@ -1,4 +1,4 @@
-package calculatora;
+package calculatora.eventos;
 
 import java.awt.Button;
 import java.awt.Color;

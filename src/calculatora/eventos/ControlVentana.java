@@ -1,4 +1,4 @@
-package calculatora;
+package calculatora.eventos;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

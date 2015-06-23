@@ -1,11 +1,12 @@
-package calculatora;
+package calculatora.paneles;
 
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.GridLayout;
 
-import superClass.Bloque;
-import superClass.BloqueBotones;
+import calculatora.eventos.ControlRaton;
+import calculatora.superClass.Bloque;
+import calculatora.superClass.BloqueBotones;
 
 public class Digitos extends BloqueBotones{
 
@@ -15,7 +16,7 @@ public class Digitos extends BloqueBotones{
 		super();
 	}
 	
-	protected Digitos(Color color) {
+	public Digitos(Color color) {
 		super();
 		GridLayout LayoutBotones = new GridLayout(4,3);
 		MiPanel.setLayout(LayoutBotones);

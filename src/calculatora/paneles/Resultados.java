@@ -1,9 +1,9 @@
-package calculatora;
+package calculatora.paneles;
 
 import java.awt.Color;
 import java.awt.TextField;
 
-import superClass.Bloque;
+import calculatora.superClass.Bloque;
 
 public class Resultados extends Bloque {
 
@@ -13,7 +13,7 @@ public class Resultados extends Bloque {
 		super();
 	}
 	
-	protected Resultados(Color color){
+	public Resultados(Color color){
 		super();
 		resultado = new TextField("",12);
 		resultado.setBackground(color);

@@ -1,4 +1,4 @@
-package superClass;
+package calculatora.superClass;
 
 import java.awt.Button;
 import java.awt.Color;

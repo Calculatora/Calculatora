@@ -1,11 +1,11 @@
-package calculatora;
+package calculatora.paneles;
 
 import java.awt.Button;
 import java.awt.Panel;
 import java.awt.GridLayout;
 import java.awt.Color;
 
-import superClass.BloqueBotones;
+import calculatora.superClass.BloqueBotones;
 
 public class Operadores extends BloqueBotones{
 	private final int NUM_BOTONES = 4;
@@ -14,7 +14,7 @@ public class Operadores extends BloqueBotones{
 		super();
 	}
 	
-	protected Operadores(Color color) {
+	public Operadores(Color color) {
 		super();
 		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,0);
 		MiPanel.setLayout(LayoutBotones);

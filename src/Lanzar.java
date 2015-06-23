@@ -1,6 +1,6 @@
 import calculatora.Automata;
 import calculatora.GUICalculadora;
-import calculatora.Resultados;
+import calculatora.paneles.Resultados;
 
 
 public class Lanzar {

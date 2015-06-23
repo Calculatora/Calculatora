@@ -1,9 +1,13 @@
-package calculatora;
+package calculatora.eventos;
 
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import calculatora.Automata;
+import calculatora.OpcionErronea;
+import calculatora.paneles.Resultados;
 
 public class ControlRaton extends MouseAdapter {
 	public void mouseClicked(MouseEvent EventoQueLlega){

@@ -5,6 +5,7 @@ import java.awt.Panel;
 import java.awt.GridLayout;
 import java.awt.Color;
 
+import calculatora.eventos.ControlRaton;
 import calculatora.superClass.BloqueBotones;
 
 public class Operadores extends BloqueBotones{
@@ -16,17 +17,19 @@ public class Operadores extends BloqueBotones{
 	
 	public Operadores(Color color) {
 		super();
-		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,0);
+		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,1);
 		MiPanel.setLayout(LayoutBotones);
-		Botones = new Button[NUM_BOTONES];
-		Botones[0] = new Button("+");
-		Botones[1] = new Button("-");
-		Botones[2] = new Button("*");
-		Botones[3] = new Button("/");
+		Botones = new Boton[NUM_BOTONES];
+		Botones[0] = new Boton("+");
+		Botones[1] = new Boton("-");
+		Botones[2] = new Boton("*");
+		Botones[3] = new Boton("/");
 		
 		for (int i = 0; i < Botones.length; i++){
 			MiPanel.add(Botones[i]);
+			Botones[i].addMouseListener(new ControlRaton());
 			Botones[i].setBackground(color);
+			Botones[i].setColorOriginal(color);
 		}
 	}
 	

@@ -17,7 +17,7 @@ public class ControlRaton extends MouseAdapter {
 		try { 
 			Automata.CaracterIntroducido(Car); 
 		} catch(OpcionErronea e) {
-			Resultados.setText(e.getMessage());
+			Resultados.setText(e.mensajeError());
 			Boton.setBackground(Color.red);
 		}
 	}

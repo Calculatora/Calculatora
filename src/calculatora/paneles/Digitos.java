@@ -10,15 +10,25 @@ import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
 import calculatora.superClass.Bloque;
 import calculatora.superClass.BloqueBotones;
-
+/**
+ * Clase que pone dígitos (Números del 0 al 9, "," y "=") a los botones.
+ * @author Alumno mañana
+ *
+ */
 public class Digitos extends BloqueBotones{
 
 	private final int NUM_DIGITOS = 12;
 	
+	/**
+	 * Constructor que inicializa el objeto Digitos.
+	 */
 	protected Digitos() {
 		super();
 	}
-	
+	/**
+	 * Constructor sobrecargado.
+	 * @param color
+	 */
 	public Digitos(Color color) {
 		super();
 		GridLayout LayoutBotones = new GridLayout(4,3);

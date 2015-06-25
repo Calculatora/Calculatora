@@ -5,6 +5,13 @@ import java.awt.*;
 import calculatora.paneles.Digitos;
 import calculatora.paneles.Operadores;
 import calculatora.paneles.Resultados;
+
+/**
+ * Es la clase que construye la interfaz de la calculadora.
+ * Establece los colores, tamaños y posiciones de los elementos de la calculadora.
+ * @author Alumno mañana
+ *
+ */
 public class GUICalculadora {
 	public GUICalculadora() {
 		Frame MiMarco = new Frame(); 

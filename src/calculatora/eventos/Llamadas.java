@@ -27,7 +27,7 @@ public class Llamadas {
 		if (orden.equals("CE")){
 			AutomataEspecial.limpiarUltimoNumero();
 		} else if (orden.equals("C")){
-			AutomataEspecial.limpiarTodo();
+			AutomataEspecial.limpiarOperaciones();
 		} else if (orden.equals("±")){
 			AutomataEspecial.cambiarSigno();
 		} else if(orden.equals("M+")){

@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 
 import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
+import calculatora.eventos.ControlTeclado;
 import calculatora.superClass.Bloque;
 import calculatora.superClass.BloqueBotones;
 
@@ -47,6 +48,7 @@ public class Digitos extends BloqueBotones{
 			MiPanel.add(Botones[i]);
 			Botones[i].addMouseListener(new ControlRaton());
 			Botones[i].addFocusListener(new ControlFoco());
+			Botones[i].addKeyListener(new ControlTeclado());
 			Botones[i].setBackground(color);
 			Botones[i].setColorOriginal(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));

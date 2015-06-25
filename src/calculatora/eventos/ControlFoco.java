@@ -8,7 +8,6 @@ import java.awt.event.FocusListener;
 import calculatora.paneles.Boton;
 
 public class ControlFoco implements FocusListener {
-	private Color ColorBoton;   
 	public ControlFoco() {
 	}
 	public void focusGained(FocusEvent EventoQueLlega){

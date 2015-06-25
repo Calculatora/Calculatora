@@ -2,7 +2,6 @@ package calculatora.eventos;
 
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Event;
 
 import calculatora.Automata;
 import calculatora.OpcionErronea;

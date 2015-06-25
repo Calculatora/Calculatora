@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
 import calculatora.eventos.ControlTeclado;
-import calculatora.superClass.Bloque;
 import calculatora.superClass.BloqueBotones;
 
 public class Digitos extends BloqueBotones{

@@ -1,11 +1,10 @@
 package calculatora.paneles;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Panel;
 import java.awt.GridLayout;
-import java.awt.Color;
 
 import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;

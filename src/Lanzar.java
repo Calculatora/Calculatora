@@ -5,7 +5,7 @@ import calculatora.paneles.Resultados;
 
 public class Lanzar {
 	public static void main(String[] args) {
-		GUICalculadora MiCalculadora = new GUICalculadora(); 
+		new GUICalculadora(); 
 		new Automata(Resultados.dameResultado());
 	} 
 }

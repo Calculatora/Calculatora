@@ -7,6 +7,7 @@ import java.awt.Panel;
 import java.awt.GridLayout;
 import java.awt.Color;
 
+import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
 import calculatora.superClass.BloqueBotones;
 
@@ -32,6 +33,7 @@ public class Operadores extends BloqueBotones{
 		for (int i = 0; i < Botones.length; i++){
 			MiPanel.add(Botones[i]);
 			Botones[i].addMouseListener(new ControlRaton());
+			Botones[i].addFocusListener(new ControlFoco());
 			Botones[i].setBackground(color);
 			Botones[i].setColorOriginal(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));

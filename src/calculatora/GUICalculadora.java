@@ -25,6 +25,6 @@ public class GUICalculadora {
 		MiMarco.setSize(360,435);
 		MiMarco.setTitle("Calculadora");  
 		MiMarco.setVisible(true);
-//		MiMarco.setResizable(false);
+		MiMarco.setResizable(false);
 	} 
 }

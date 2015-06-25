@@ -9,14 +9,25 @@ import java.awt.GridLayout;
 import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
 import calculatora.superClass.BloqueBotones;
-
+/**
+ * Clase que pone operadores ("+", "-", "*" y "/") a los botones.
+ * @author Alumno mañana
+ *
+ */
 public class Operadores extends BloqueBotones{
 	private final int NUM_BOTONES = 4;
 	
+	/**
+	 * Constructor que inicia el objeto operadores.
+	 */
 	protected Operadores() {
 		super();
 	}
 	
+	/**
+	 * Constructor sobrecargado.
+	 * @param color
+	 */
 	public Operadores(Color color) {
 		super();
 		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,1);

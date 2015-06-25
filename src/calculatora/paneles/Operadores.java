@@ -11,7 +11,7 @@ import calculatora.eventos.ControlRaton;
 import calculatora.superClass.BloqueBotones;
 /**
  * Clase que pone operadores ("+", "-", "*" y "/") a los botones.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class Operadores extends BloqueBotones{
@@ -25,7 +25,7 @@ public class Operadores extends BloqueBotones{
 	}
 	
 	/**
-	 * Constructor sobrecargado.
+	 * Constructor que inicia el objeto operadores con un color.
 	 * @param color
 	 */
 	public Operadores(Color color) {

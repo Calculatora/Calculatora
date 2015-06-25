@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Clase que controla la entrada de eventos a través del ratón.
- * @author Alumno mañana
+ * @author cristinavi
  *
  */
 public class ControlRaton extends MouseAdapter {

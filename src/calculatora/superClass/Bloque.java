@@ -4,7 +4,7 @@ import java.awt.Panel;
 
 /**
  * Clase que pone el bloque del panel de resultados en la interfaz.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public abstract class Bloque {

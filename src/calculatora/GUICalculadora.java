@@ -9,7 +9,7 @@ import calculatora.paneles.Resultados;
 /**
  * Es la clase que construye la interfaz de la calculadora.
  * Establece los colores, tamaños y posiciones de los elementos de la calculadora.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class GUICalculadora {

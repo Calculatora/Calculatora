@@ -17,6 +17,10 @@ import calculatora.paneles.Resultados;
  *
  */
 public class Llamadas {
+	/**
+	 * Metodo para llamar del evento al automata
+	 * @param boton
+	 */
 	public static void llamoAutomata(Button boton){
 		char Car = boton.getLabel().charAt(0);
 		try { 

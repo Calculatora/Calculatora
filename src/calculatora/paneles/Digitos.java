@@ -12,7 +12,7 @@ import calculatora.eventos.ControlTeclado;
 import calculatora.superClass.BloqueBotones;
 /**
  * Clase que pone dígitos (Números del 0 al 9, "," y "=") a los botones.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class Digitos extends BloqueBotones{
@@ -26,7 +26,7 @@ public class Digitos extends BloqueBotones{
 		super();
 	}
 	/**
-	 * Constructor sobrecargado.
+	 * Constructor que inicializa el objeto Digisto indicando el color de los botones.
 	 * @param color
 	 */
 	public Digitos(Color color) {

@@ -8,7 +8,7 @@ import java.awt.event.FocusListener;
 /**
  * Clase que controla el foco sobre los botones de la calculadora.
  * Implementa la interfaz FocusListener.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class ControlFoco implements FocusListener {

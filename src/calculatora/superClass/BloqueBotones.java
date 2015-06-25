@@ -4,7 +4,7 @@ import java.awt.Button;
 
 /**
  * Clase que pone el bloque de los dígitos y operadores en la interfaz.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class BloqueBotones  extends Bloque {

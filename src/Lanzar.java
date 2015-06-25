@@ -4,7 +4,7 @@ import calculatora.paneles.Resultados;
 
 /**
  * Clase con la que vamos a ejecutar el programa.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class Lanzar {

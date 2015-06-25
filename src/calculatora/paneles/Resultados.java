@@ -9,7 +9,7 @@ import calculatora.superClass.Bloque;
 
 /**
  * Clase que pone el bloque de los resultados en la interfaz de la calculadora.
- * @author Alumno mañana
+ * @author jfernandezpe
  *
  */
 public class Resultados extends Bloque {

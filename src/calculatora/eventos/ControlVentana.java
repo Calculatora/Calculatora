@@ -4,7 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 /**
  * Clase que cierra la ventana de la calculadora.
- * @author Alumno mañana
+ * @author fernandezpe
  *
  */
 public class ControlVentana extends WindowAdapter {

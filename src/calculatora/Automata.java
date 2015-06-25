@@ -17,7 +17,7 @@ public class Automata {
 		if (Visor.getText().equals("No valido")){
 			Visor.setText("");
 		}
-		
+		Visor.setText(Visor.getText()+Car);
 		switch(Estado) {
 			case 0:
 				switch(Car) {

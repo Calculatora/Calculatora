@@ -39,11 +39,19 @@ public class Resultados extends Bloque {
 	}
 	
 	/**
-	 * Método para que devuelva el resultado.
+	 * Método para que devuelva el campo resultado.
 	 * @return
 	 */
-	public static TextField dameResultado(){
+	public static TextField dameCampoResultado(){
 		return resultado;
+	}
+	
+	/**
+	 * Devuelve el resultado del campo de resultado
+	 * @return
+	 */
+	public static String dameResultado(){
+		return resultado.getText();
 	}
 	
 	/**

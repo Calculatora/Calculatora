@@ -20,6 +20,8 @@ public class Resultados extends Bloque {
 		resultado = new TextField("",15);
 		resultado.setPreferredSize(new Dimension(350,20));
 		resultado.setBackground(color);
+		resultado.setEditable(false);
+		resultado.setEnabled(false); 
 		Font fuente=new Font("Dialog", Font.BOLD, 36);
 		resultado.setFont (fuente);	
 		MiPanel.add(resultado);	

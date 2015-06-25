@@ -33,6 +33,8 @@ public class Resultados extends Bloque {
 		resultado.setBackground(color);
 		Font fuente=new Font("Dialog", Font.BOLD, 36);
 		resultado.setFont (fuente);	
+		resultado.setEditable(false);
+		resultado.setEnabled(false); 
 		MiPanel.add(resultado);	
 	}
 	

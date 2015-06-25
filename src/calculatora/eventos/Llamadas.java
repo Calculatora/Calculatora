@@ -4,6 +4,7 @@ import java.awt.Button;
 import java.awt.Color;
 
 import calculatora.Automata;
+import calculatora.AutomataEspecial;
 import calculatora.OpcionErronea;
 import calculatora.paneles.Resultados;
 
@@ -22,12 +23,29 @@ public class Llamadas {
 	 * @param boton
 	 */
 	public static void llamoAutomata(Button boton){
-		char Car = boton.getLabel().charAt(0);
-		try { 
-			Automata.CaracterIntroducido(Car); 
-		} catch(OpcionErronea e) {
-			Resultados.setText(e.mensajeError());
-			boton.setBackground(Color.red);
+		String orden = boton.getLabel();
+		if (orden.equals("CE")){
+			AutomataEspecial.limpiarUltimoNumero();
+		} else if (orden.equals("C")){
+			AutomataEspecial.limpiarTodo();
+		} else if (orden.equals("±")){
+			AutomataEspecial.cambiarSigno();
+		} else if(orden.equals("M+")){
+			AutomataEspecial.guardarMemoria();
+		} else if (orden.equals("Mc")){
+			AutomataEspecial.borrarMemoria();
+		} else if (orden.equals("Mr")){
+			AutomataEspecial.recuperarMemoria();
+		} else { 
+			char Car = boton.getLabel().charAt(0);
+
+			try { 
+				Automata.CaracterIntroducido(Car); 
+			} catch(OpcionErronea e) {
+				Resultados.setText(e.mensajeError());
+				boton.setBackground(Color.red);
+			}
 		}
+		
 	}
 }

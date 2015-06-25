@@ -1,7 +1,5 @@
 package calculatora;
 
-import java.awt.TextField;
-
 import calculatora.paneles.Resultados;
 
 public class AutomataEspecial {
@@ -18,7 +16,7 @@ public class AutomataEspecial {
 
 	public static void cambiarSigno() {
 		try {
-			String sNumero = Resultados.dameResultado().getText();
+			String sNumero = Resultados.dameResultado();
 			Double dNumero = Double.parseDouble(sNumero);
 			dNumero = dNumero * (-1);
 			sNumero = Double.toString(dNumero);
@@ -30,7 +28,7 @@ public class AutomataEspecial {
 
 	public static void guardarMemoria() {
 		try {
-			memoria = Double.parseDouble(Resultados.dameResultado().getText());
+			memoria = Double.parseDouble(Resultados.dameResultado());
 		} catch (NumberFormatException e){
 			borrarMemoria();
 		}

@@ -1,17 +1,13 @@
 package calculatora;
 
 import java.awt.*; 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import calculatora.eventos.ControlVentana;
 import calculatora.paneles.Digitos;
 import calculatora.paneles.Operadores;
 import calculatora.paneles.Resultados;
-
-/**
- * Es la clase que construye la interfaz de la calculadora.
- * Establece los colores, tamaños y posiciones de los elementos de la calculadora.
- * @author jfernandezpe
- *
- */
 public class GUICalculadora {
 	public GUICalculadora() {
 		Frame MiMarco = new Frame(); 
@@ -33,5 +29,8 @@ public class GUICalculadora {
 		MiMarco.setTitle("Calculadora");  
 		MiMarco.setVisible(true);
 		MiMarco.setResizable(false);
+		
+		MiMarco.addWindowListener(new ControlVentana());
+		
 	} 
 }

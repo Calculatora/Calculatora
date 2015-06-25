@@ -5,18 +5,19 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import calculatora.paneles.Boton;
-
 public class ControlFoco implements FocusListener {
-	public ControlFoco() {
+	private Color colorOriginal;
+	
+	public ControlFoco(Color color) {
+		colorOriginal = color;
 	}
 	public void focusGained(FocusEvent EventoQueLlega){
-		Button Boton = (Button) EventoQueLlega.getSource(); 
-		Boton.setBackground(Color.green);
+		Button boton = (Button) EventoQueLlega.getSource(); 
+		boton.setBackground(Color.green);
 	}
 	public void focusLost(FocusEvent EventoQueLlega){
-		Boton boton = (Boton) EventoQueLlega.getSource
+		Button boton = (Button) EventoQueLlega.getSource
 		(); 
-		boton.setBackground(boton.getColorOriginal()); 
+		boton.setBackground(colorOriginal); 
 	}
 }

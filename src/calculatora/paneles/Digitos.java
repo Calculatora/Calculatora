@@ -25,32 +25,31 @@ public class Digitos extends BloqueBotones{
 		GridLayout LayoutBotones = new GridLayout(4,3);
 		MiPanel.setLayout(LayoutBotones);
 		
-		Botones = new Boton[NUM_DIGITOS];
+		Botones = new Button[NUM_DIGITOS];
 		
 		
 		
-		Botones[0] = new Boton("0");
-		Botones[1] = new Boton("1");
-		Botones[2] = new Boton("2");
-		Botones[3] = new Boton("3");
-		Botones[4] = new Boton("4");
-		Botones[5] = new Boton("5");
-		Botones[6] = new Boton("6");
-		Botones[7] = new Boton("7");
-		Botones[8] = new Boton("8");
-		Botones[9] = new Boton("9");
-		Botones[10] = new Boton(",");
-		Botones[11] = new Boton("=");
+		Botones[0] = new Button("0");
+		Botones[1] = new Button("1");
+		Botones[2] = new Button("2");
+		Botones[3] = new Button("3");
+		Botones[4] = new Button("4");
+		Botones[5] = new Button("5");
+		Botones[6] = new Button("6");
+		Botones[7] = new Button("7");
+		Botones[8] = new Button("8");
+		Botones[9] = new Button("9");
+		Botones[10] = new Button(",");
+		Botones[11] = new Button("=");
 
 		Font fuente=new Font("Dialog", Font.BOLD, 36);
 		
 		for (int i = Botones.length - 1; i >= 0; i--){
 			MiPanel.add(Botones[i]);
-			Botones[i].addMouseListener(new ControlRaton());
-			Botones[i].addFocusListener(new ControlFoco());
+			Botones[i].addMouseListener(new ControlRaton(color));
+			Botones[i].addFocusListener(new ControlFoco(color));
 			Botones[i].addKeyListener(new ControlTeclado());
 			Botones[i].setBackground(color);
-			Botones[i].setColorOriginal(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));
 			Botones[i].setFont (fuente);				
 		}

@@ -1,11 +1,11 @@
 package calculatora.eventos;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Event;
 
 import calculatora.Automata;
 import calculatora.OpcionErronea;
-import calculatora.paneles.Boton;
 import calculatora.paneles.Resultados;
 
 /**
@@ -18,7 +18,7 @@ import calculatora.paneles.Resultados;
  *
  */
 public class Llamadas {
-	public static void llamoAutomata(Boton boton){
+	public static void llamoAutomata(Button boton){
 		char Car = boton.getLabel().charAt(0);
 		try { 
 			Automata.CaracterIntroducido(Car); 

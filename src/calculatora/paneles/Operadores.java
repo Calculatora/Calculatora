@@ -22,20 +22,19 @@ public class Operadores extends BloqueBotones{
 		super();
 		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,1);
 		MiPanel.setLayout(LayoutBotones);
-		Botones = new Boton[NUM_BOTONES];
-		Botones[0] = new Boton("+");
-		Botones[1] = new Boton("-");
-		Botones[2] = new Boton("*");
-		Botones[3] = new Boton("/");
+		Botones = new Button[NUM_BOTONES];
+		Botones[0] = new Button("+");
+		Botones[1] = new Button("-");
+		Botones[2] = new Button("*");
+		Botones[3] = new Button("/");
 		
 		Font fuente=new Font("Dialog", Font.BOLD, 36);
 
 		for (int i = 0; i < Botones.length; i++){
 			MiPanel.add(Botones[i]);
-			Botones[i].addMouseListener(new ControlRaton());
-			Botones[i].addFocusListener(new ControlFoco());
+			Botones[i].addMouseListener(new ControlRaton(color));
+			Botones[i].addFocusListener(new ControlFoco(color));
 			Botones[i].setBackground(color);
-			Botones[i].setColorOriginal(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));
 			Botones[i].setFont (fuente);		
 		}

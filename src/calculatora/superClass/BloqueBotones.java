@@ -3,10 +3,8 @@ package calculatora.superClass;
 import java.awt.Button;
 import java.awt.Color;
 
-import calculatora.paneles.Boton;
-
 public class BloqueBotones  extends Bloque {
-	protected Boton[] Botones;
+	protected Button[] Botones;
 	
 	protected BloqueBotones(){
 		super();

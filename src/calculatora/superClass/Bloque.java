@@ -9,7 +9,6 @@ public abstract class Bloque {
 	protected Panel MiPanel = new Panel();
 	
 	protected Bloque(){
-		GridLayout LayoutBotones = new GridLayout(4,3);
 	}
 	
 	public Panel DamePanel(){

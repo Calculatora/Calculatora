@@ -16,6 +16,6 @@ public class Lanzar {
 	 */
 	public static void main(String[] args) {
 		new GUICalculadora(); 
-		new Automata(Resultados.dameResultado());
+		new Automata(Resultados.dameCampoResultado());
 	} 
 }

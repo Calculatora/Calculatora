@@ -2,18 +2,36 @@ package calculatora;
 
 import calculatora.paneles.Resultados;
 
+/**
+ * Realiza las funciones de los botones especiales (memoria, borrar y cambiar el signo).
+ * 
+ * @author jfernandezpe
+ * @since 2015/06/25
+ *
+ */
 public class AutomataEspecial {
 
 	private static double memoria;
+	
+	/**
+	 * Limpia el número el último número completo con el que se está operando
+	 * (no borra todo el número, no solo el último digito)
+	 */
 	public static void limpiarUltimoNumero() {
 		Resultados.setText("0");		
 	}
 
-	public static void limpiarTodo() {
+	/**
+	 * Limpia los registros de las operaciones
+	 */
+	public static void limpiarOperaciones() {
 		limpiarUltimoNumero();
 		System.out.println("Implementar llamada a automata");
 	}
 
+	/**
+	 * Cambia el signo de número en display
+	 */
 	public static void cambiarSigno() {
 		try {
 			String sNumero = Resultados.dameResultado();
@@ -26,6 +44,9 @@ public class AutomataEspecial {
 		}
 	}
 
+	/**
+	 * Guarda el número en display en memoria
+	 */
 	public static void guardarMemoria() {
 		try {
 			memoria = Double.parseDouble(Resultados.dameResultado());
@@ -35,11 +56,17 @@ public class AutomataEspecial {
 		
 	}
 
+	/**
+	 * Borra el número en memoria
+	 */
 	public static void borrarMemoria() {
 		memoria = 0;
 		
 	}
 
+	/**
+	 * Recupera en la pantalla el número en memoria
+	 */
 	public static void recuperarMemoria() {
 		String sNumero = Double.toString(memoria);
 		Resultados.setText(sNumero);

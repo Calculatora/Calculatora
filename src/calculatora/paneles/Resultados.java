@@ -28,7 +28,7 @@ public class Resultados extends Bloque {
 	 */
 	public Resultados(Color color){
 		super();
-		resultado = new TextField("",15);
+		resultado = new TextField("0",15);
 		resultado.setPreferredSize(new Dimension(350,20));
 		resultado.setBackground(color);
 		Font fuente=new Font("Dialog", Font.BOLD, 36);

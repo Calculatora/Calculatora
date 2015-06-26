@@ -37,7 +37,7 @@ public class Digitos extends BloqueBotones{
 		Botones = new Button[NUM_DIGITOS];
 		
 		Botones[0] = new Button("=");
-		Botones[1] = new Button(",");
+		Botones[1] = new Button(".");
 		Botones[2] = new Button("0");
 		Botones[3] = new Button("1");
 		Botones[4] = new Button("2");

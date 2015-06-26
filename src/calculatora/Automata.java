@@ -17,13 +17,17 @@ public class Automata {
 		if (Visor.getText().equals("No valido")){
 			Visor.setText("");
 		}
-		Visor.setText(Visor.getText()+Car);
+		
+		//Visor.setText(Visor.getText()+Car);
+		
 		switch(Estado) {
 		/*
 		 * A partir del Estado 0.
 		 */
 			case 0:
 				switch(Car) {
+				
+					
 				/*
 				 * Cambia a Estado 1 si es un "+,-,* o /".
 				 */
@@ -115,6 +119,10 @@ public class Automata {
 						Estado=2;
 						Visor.setText(Visor.getText()+Car); 
 						break;
+					case '.':
+						Estado=3;
+						Visor.setText(Visor.getText()+Car);
+						break;
 				/*
 				 * Pasa al estado 5 si es un operador.
 				 */
@@ -124,6 +132,13 @@ public class Automata {
 					case '/':
 						Estado=5;
 							Visor.setText(Visor.getText()+Car);
+					/*
+					 * Guardamos el operando1 y el operador en las variables correspondientes.
+					 */							
+							Operando1 = Double.valueOf(Visor.getText().substring(0, Visor.getText().length()-1)).doubleValue();
+							Operador = (char) Visor.getText().charAt(Visor.getText().length()-1);
+							//System.out.println(Operador +" Operador   "+Operando1 + " Operando1");
+							
 						break;
 					default:
 						//Lanzar();
@@ -186,6 +201,13 @@ public class Automata {
 					case '/':
 						Estado=5;
 							Visor.setText(Visor.getText()+Car);
+					/*
+					 * Guardamos el operando1 y el operador en las variables correspondientes.
+					 */							
+							Operando1 = Double.valueOf(Visor.getText().substring(0, Visor.getText().length()-1)).doubleValue();
+							Operador = (char) Visor.getText().charAt(Visor.getText().length()-1);
+							//System.out.println(Operador +" Operador   "+Operando1 + " Operando1");
+							
 						break;
 					default:
 						//Lanzar();
@@ -196,6 +218,8 @@ public class Automata {
 		 * A partir del estado 5
 		 */
 			case 5:
+				Operando1 = Double.valueOf(Visor.getText().substring(0, Visor.getText().length()-2)).doubleValue();
+				
 				switch(Car) {
 				/*
 				 * Cambia a estado Estado 7 si digito.
@@ -230,6 +254,8 @@ public class Automata {
 						String aux = new String();
 						aux = Visor.getText().substring(0, 0);
 						Visor.setText(aux+Car);
+						Operador = Visor.getText().charAt(Visor.getText().length()-1);
+						System.out.println(Operador);
 						break;
 					default:
 						//Lanzar();
@@ -284,7 +310,7 @@ public class Automata {
 						Estado=7;
 						Visor.setText(Visor.getText()+Car); 
 						break;
-					case ',':
+					case '.':
 						Estado=8;
 						Visor.setText(Visor.getText()+Car); 
 						break;
@@ -360,7 +386,8 @@ public class Automata {
 				/*
 				 * Hacemos la operacion y dejamos en la pantalla el resultado solamente
 				 */
-				procResult(Visor.getText());
+				ObtenerResultado(Visor.getText());
+				
 				switch(Car) {
 				/*
 				 * Cambia a estado Estado 5 si es operador.
@@ -380,19 +407,15 @@ public class Automata {
 		}	
 	}
 	
-	private static void procResult(String texto){
-		
-		char[] arrayResult = Visor.getText().toCharArray();
-		int i = 0;
-		while(arrayResult[i] != '+' || arrayResult[i] != '-'|| arrayResult[i] != '*'|| arrayResult[i] != '/' ){
-			Operando1 = (double)arrayResult[i];
-			i++;
-		}
+	private static void ObtenerResultado(String Cadena){
+		Operando1 = Double.valueOf(Cadena).doubleValue();
 		System.out.println(Operando1);
 		
 	}
 	
-	private static double ObtenerResultado() {
+	
+	private static double AObtenerResultado() {
+		
 		switch(Operador) {
 			case '+':
 				return Operando1 + Operando2;

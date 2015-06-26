@@ -1,15 +1,15 @@
 package calculatora;
 
-import java.awt.TextField;
+import javax.swing.JTextField;
 
 public class Automata {
 	private static byte Estado = 0; 
-	private static TextField Visor;
+	private static JTextField Visor;
 	private static double Operando1=0d;
 	private static double Operando2=0d;
 	private static char Operador=' '; 
 	
-	public Automata(TextField Visor) {
+	public Automata(JTextField Visor) {
 		this.Visor = Visor;
 	}
 	

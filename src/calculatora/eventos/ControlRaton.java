@@ -1,9 +1,10 @@
 package calculatora.eventos;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
 
 /**
  * Clase que controla la entrada de eventos a través del ratón.
@@ -21,21 +22,21 @@ public class ControlRaton extends MouseAdapter {
 	 * Método para introducir caracteres por medio del ratón.
 	 */
 	public void mouseClicked(MouseEvent EventoQueLlega){
-		Button boton = (Button) EventoQueLlega.getSource();
+		JButton boton = (JButton) EventoQueLlega.getSource();
 		Llamadas.llamoAutomata(boton);
 	}
 	/**
 	 * Cuando pasamos el ratón por encima de los botones, éstos se cambian a color cyan.
 	 */
 	public void mouseEntered(MouseEvent EventoQueLlega){
-		Button boton = (Button) EventoQueLlega.getSource();
+		JButton boton = (JButton) EventoQueLlega.getSource();
 		boton.setBackground(Color.CYAN);
 	}
 	/**
 	 * Cuando quitamos el ratón de encima de los botones, vuelven al color original.
 	 */
 	public void mouseExited(MouseEvent EventoQueLlega){
-		Button boton = (Button) EventoQueLlega.getSource();
+		JButton boton = (JButton) EventoQueLlega.getSource();
 		boton.setBackground(colorOriginal);		
 	}
 }

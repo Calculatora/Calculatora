@@ -1,9 +1,10 @@
 package calculatora.eventos;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+
+import javax.swing.JButton;
 
 /**
  * Clase que controla el foco sobre los botones de la calculadora.
@@ -24,14 +25,14 @@ public class ControlFoco implements FocusListener {
 	 * Método que establece color verde en un botón cuando ponemos el foco sobre él.
 	 */
 	public void focusGained(FocusEvent EventoQueLlega){
-		Button boton = (Button) EventoQueLlega.getSource(); 
+		JButton boton = (JButton) EventoQueLlega.getSource(); 
 		boton.setBackground(Color.green);
 	}
 	/**
 	 * Cuando sacamos el foco del botón vuelve al color original.
 	 */
 	public void focusLost(FocusEvent EventoQueLlega){
-		Button boton = (Button) EventoQueLlega.getSource
+		JButton boton = (JButton) EventoQueLlega.getSource
 		(); 
 		boton.setBackground(colorOriginal); 
 	}

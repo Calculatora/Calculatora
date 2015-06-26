@@ -1,8 +1,9 @@
 package calculatora.eventos;
 
-import java.awt.Button;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
 
 /**
  * Control del ratón
@@ -24,7 +25,7 @@ public class ControlTeclado extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent EventoQueLlega) {
     	if(EventoQueLlega.getKeyCode() == 10){
-    		Button boton = (Button) EventoQueLlega.getSource();
+    		JButton boton = (JButton) EventoQueLlega.getSource();
     		Llamadas.llamoAutomata(boton);    		
     	}
 

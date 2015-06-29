@@ -37,7 +37,7 @@ public class Resultados extends Bloque {
 		resultado.setFont (fuente);	
 		resultado.setEditable(false);
 		resultado.setEnabled(false); 
-		resultado.setHorizontalAlignment(JTextField.RIGHT);
+//		resultado.setHorizontalAlignment(JTextField.RIGHT);
 		MiPanel.add(resultado);	
 	}
 	
@@ -54,6 +54,7 @@ public class Resultados extends Bloque {
 	 * @return
 	 */
 	public static String dameResultado(){
+		System.out.println("TEXT FIELD"+resultado.getText());
 		return resultado.getText();
 	}
 	

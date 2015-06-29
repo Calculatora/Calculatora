@@ -8,8 +8,8 @@ import calculatora.paneles.Resultados;
 
 public class Automata {
 	private static JTextField Visor;
-	private static String Operando1 = "0";
-	private static String Operando2 = "0";
+	private static Double Operando1 = (double) 0;
+	private static Double Operando2 = (double) 0;
 	private static char operador;
 	private static byte estado;
 	
@@ -29,6 +29,7 @@ public class Automata {
 		System.out.println("Despues de comprobar el estado:_"+estado);
 		switch(estado){ 
 		//El case 0 no es necesario, nunca ocurrirá (si está en 0 se cambia a 1 en comprobar estado)
+
 			case 1:
 				addDigito(Car);//Tiene que comprobar el dígito y añadirlo
 				break;
@@ -68,38 +69,37 @@ public class Automata {
 				estado = 10;
 			case 12:
 				operar();
-				estado = 6;
 				break;
 			case 13:
 				addOperacion(Car);
-				estado = 6;
 				break;
 		}
-		
+		System.out.println("Estado a la salida "+estado);
 		
 	}
 	
 	private static void operar() {
-		Operando2 = Resultados.dameResultado();
+		Operando2 = Double.parseDouble(Resultados.dameResultado());
 		double resultado = obtenerResultado();
 		Operando1 = Operando2;
-		Operando2 = String.valueOf(resultado);
-		System.out.println("Operandos después de operar "+Operando1+"_"+Operando2);
+		Operando2 = resultado;
 		Resultados.setText(String.valueOf(Operando2));
 	}
 
 
 	private static void addOperacion(char Car){
-		System.out.println("Lo que hay en pantalla "+Resultados.dameResultado());
-		Operando1 = Resultados.dameResultado();	
+		Operando1 = Operando2;
+		Operando2 = Double.parseDouble(Resultados.dameResultado());
 		operador = Car;
 		String resultado = String.valueOf(Car);
 		Resultados.setText(resultado);
-		System.out.println("Añado operacion"+Operando1+"_"+Operando2);
 	}
 
 	private static void addOperacionPrimera(char Car) {
-		addOperacion(Car);
+		Operando1 = Double.parseDouble(Resultados.dameResultado());	
+		operador = Car;
+		String resultado = String.valueOf(Car);
+		Resultados.setText(resultado);
 	}
 
 
@@ -117,7 +117,6 @@ public class Automata {
 
 
 	private static void addDigito(char Car) {
-		System.out.println("aadDigito"+Car);
 		String cadena = String.valueOf(Car);
 		boolean quitarCero = false;
 		if (Resultados.dameResultado().equals("0") && !cadena.equals(".")){
@@ -127,7 +126,7 @@ public class Automata {
 			if(quitarCero){
 				Resultados.setText(cadena);
 			} else {
-				Resultados.setText(Resultados.dameResultado()+Car);
+				Resultados.setText(Resultados.dameResultado()+cadena);
 			}
 		}
 		
@@ -144,8 +143,11 @@ public class Automata {
 			Resultados.setText("");
 		}
 		if ( comprobarNumeroOComa(Car) ){
-			if (estado == 0){
+			if (estado == 0 || estado == 12){
 				estado = 1;
+			} else if (estado == 13){
+				estado = 7;
+				Resultados.setText("");
 			}
 		} else {
 			switch(Car){
@@ -153,12 +155,13 @@ public class Automata {
 				case '-':
 				case '*':
 				case '/':
-					if (estado == 1 || estado == 4 || estado == 7 || estado == 10) {
+					if (estado == 1 || estado == 4 || estado == 10) {
 						estado = 6;
+						operador(Car);
 					} else if (estado == 12){
 						estado = 13;
+						operador(Car);
 					}
-					operador(Car);
 					break;
 				case '.':
 					switch(estado){
@@ -200,9 +203,8 @@ public class Automata {
 	}
 	
 	private static double obtenerResultado() {
-		System.out.println(Operando1+"___"+Operando2);
-		double ope1 = Integer.parseInt(Operando1);
-		double ope2 = Integer.parseInt(Operando2);
+		double ope1 = Operando1;
+		double ope2 = Operando2;
 		double resultado;
 		
 		switch(operador) {
@@ -222,6 +224,22 @@ public class Automata {
 				resultado = 0;					
 		}
 		return resultado;
+	}
+	
+	public static void setEstado(byte est){
+		if (est == -1) {
+			if (estado == 4){
+				estado = 1;
+			} else if (estado == 10){
+				estado = 7;
+			}
+		} else {
+			estado = est;
+		}
+	}
+
+	public static int getEstado() {
+		return estado;
 	}
 	
 }

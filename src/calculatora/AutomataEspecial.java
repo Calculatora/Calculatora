@@ -19,6 +19,7 @@ public class AutomataEspecial {
 	 */
 	public static void limpiarUltimoNumero() {
 		Resultados.setText("0");		
+		Automata.setEstado( (byte) -1);
 	}
 
 	/**
@@ -26,7 +27,7 @@ public class AutomataEspecial {
 	 */
 	public static void limpiarOperaciones() {
 		limpiarUltimoNumero();
-		System.out.println("Implementar llamada a automata");
+		Automata.setEstado((byte) 0);
 	}
 
 	/**

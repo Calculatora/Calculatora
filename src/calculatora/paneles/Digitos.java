@@ -38,7 +38,7 @@ public class Digitos extends BloqueBotones{
 		Botones = new JButton[NUM_DIGITOS];
 		
 		Botones[0] = new JButton("=");
-		Botones[1] = new JButton(",");
+		Botones[1] = new JButton(".");
 		Botones[2] = new JButton("0");
 		Botones[3] = new JButton("1");
 		Botones[4] = new JButton("2");

@@ -24,7 +24,7 @@ public class ControlTeclado extends KeyAdapter {
 	 */
     @Override
     public void keyPressed(KeyEvent EventoQueLlega) {
-    	if(EventoQueLlega.getKeyCode() == 10){
+    	if(EventoQueLlega.getKeyCode() == 10 || EventoQueLlega.getKeyCode() == 32){
     		JButton boton = (JButton) EventoQueLlega.getSource();
     		Llamadas.llamoAutomata(boton);    		
     	}

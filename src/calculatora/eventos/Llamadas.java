@@ -30,7 +30,7 @@ public class Llamadas {
 		} else if (orden.equals("C")){
 			AutomataEspecial.limpiarOperaciones();
 		} else if (orden.equals("±")){
-			AutomataEspecial.cambiarSigno();
+			llamadaAutomata(boton);
 		} else if(orden.equals("M+")){
 			AutomataEspecial.guardarMemoria();
 		} else if (orden.equals("Mc")){
@@ -38,14 +38,19 @@ public class Llamadas {
 		} else if (orden.equals("Mr")){
 			AutomataEspecial.recuperarMemoria();
 		} else { 
-			char Car = boton.getText().charAt(0);
+			llamadaAutomata(boton);
+		}
+		
+	}
+	
+	private static void llamadaAutomata(JButton boton){
+		char Car = boton.getText().charAt(0);
 
-			try { 
-				Automata.CaracterIntroducido(Car); 
-			} catch(OpcionErronea e) {
-				Resultados.setText(e.mensajeError());
-				boton.setBackground(Color.red);
-			}
+		try { 
+			Automata.CaracterIntroducido(Car); 
+		} catch(OpcionErronea e) {
+			Resultados.setText(e.mensajeError());
+			boton.setBackground(Color.red);
 		}
 		
 	}

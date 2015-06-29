@@ -38,7 +38,7 @@ public class Automata {
 				estado = 1;
 				break;
 			case 3:
-				addDigito(Car);
+				addComa(Car);
 				estado = 4;
 				break;
 			case 4:
@@ -56,9 +56,10 @@ public class Automata {
 				break;
 			case 8:
 				cambiarSigno();
+				estado = 7;
 				break;
 			case 9:
-				addDigito(Car);
+				addComa(Car);
 				estado = 10;
 				break;				
 			case 10:
@@ -77,13 +78,14 @@ public class Automata {
 		System.out.println("Estado a la salida "+estado);
 		
 	}
-	
+
 	private static void operar() {
 		Operando2 = Double.parseDouble(Resultados.dameResultado());
 		double resultado = obtenerResultado();
 		Operando1 = Operando2;
 		Operando2 = resultado;
 		Resultados.setText(String.valueOf(Operando2));
+		System.out.println("SACAR TRYCATCH AQUI");
 	}
 
 
@@ -105,12 +107,17 @@ public class Automata {
 
 
 	private static void cambiarSigno() {
-		String aux = Resultados.dameResultado().substring(0,0);
-		if (aux.equals('-')){
-			aux = Resultados.dameResultado().substring(1, Resultados.dameResultado().length());
-			Resultados.setText(aux);		
-		} else {
-			Resultados.setText("-"+Resultados.dameResultado());
+		try {
+			String aux = Resultados.dameResultado().substring(0,1);
+			System.out.println("AUX"+aux);
+			if (aux.equals("-")){
+				aux = Resultados.dameResultado().substring(1, Resultados.dameResultado().length());
+				Resultados.setText(aux);		
+			} else {
+				Resultados.setText("-"+Resultados.dameResultado());
+			}
+		} catch (StringIndexOutOfBoundsException e){
+			Resultados.setText("0");
 		}
 	}
 
@@ -118,6 +125,24 @@ public class Automata {
 
 	private static void addDigito(char Car) {
 		String cadena = String.valueOf(Car);
+		System.out.println("CADENA "+cadena);
+		boolean quitarCero = false;
+
+		if (Resultados.dameResultado().equals("0")){
+			quitarCero = true;
+		}
+		if (comprobarNumero(Car)){
+			if(quitarCero){
+				Resultados.setText(cadena);
+			} else {
+				Resultados.setText(Resultados.dameResultado()+cadena);
+			}
+		}
+	}
+	
+	private static void addComa(char Car) {
+		String cadena = String.valueOf(Car);
+		System.out.println("CADENA "+cadena);
 		boolean quitarCero = false;
 		if (Resultados.dameResultado().equals("0") && !cadena.equals(".")){
 			quitarCero = true;
@@ -126,23 +151,32 @@ public class Automata {
 			if(quitarCero){
 				Resultados.setText(cadena);
 			} else {
-				Resultados.setText(Resultados.dameResultado()+cadena);
+				if (Resultados.dameResultado().equals("")){
+					Resultados.setText("0"+cadena);
+				} else {
+					Resultados.setText(Resultados.dameResultado()+cadena);
+				}
 			}
 		}
-		
 	}
 
 	private static boolean comprobarNumeroOComa(char Car){
 		String cadena = String.valueOf(Car);		
-		return Pattern.matches("[0-9]|-]", cadena);
+		return Pattern.matches("[.]|[0-9]", cadena);
+	}
+
+	private static boolean comprobarNumero(char Car){
+		String cadena = String.valueOf(Car);		
+		return Pattern.matches("[0-9]", cadena);
 	}
 
 	private static void comprobarEstado(char Car){
-		if (estado == 6) {
+		String aux = String.valueOf(Car);
+		if (estado == 6 /*&& !aux.equals(".") && !aux.equals("±")*/) {
 			estado = 7;
 			Resultados.setText("");
 		}
-		if ( comprobarNumeroOComa(Car) ){
+		if ( comprobarNumero(Car) ){
 			if (estado == 0 || estado == 12){
 				estado = 1;
 			} else if (estado == 13){
@@ -165,12 +199,13 @@ public class Automata {
 					break;
 				case '.':
 					switch(estado){
-					case 1:
-						estado = 3;
-						break;
-					case 7:
-						estado = 9;
-						break;
+						case 1:
+							estado = 3;
+							break;
+						case 7:
+							estado = 9;
+							break;
+//						case
 					}
 					break;
 				case '=':
@@ -203,22 +238,20 @@ public class Automata {
 	}
 	
 	private static double obtenerResultado() {
-		double ope1 = Operando1;
-		double ope2 = Operando2;
 		double resultado;
 		
 		switch(operador) {
 			case '+':
-				resultado =  ope1 + ope2;
+				resultado =  Operando1 + Operando2;
 				break;
 			case '-':
-				resultado = ope1 - ope2;
+				resultado = Operando1 - Operando2;
 				break;
 			case '*':
-				resultado = ope1 * ope2;
+				resultado = Operando1 * Operando2;
 				break;
 			case '/':
-				resultado = ope1 / ope2;
+				resultado = Operando1 / Operando2;
 				break;
 			default:
 				resultado = 0;					

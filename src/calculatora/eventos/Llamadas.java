@@ -45,13 +45,12 @@ public class Llamadas {
 	
 	private static void llamadaAutomata(JButton boton){
 		char Car = boton.getText().charAt(0);
-
 		try { 
 			Automata.CaracterIntroducido(Car); 
 		} catch(OpcionErronea e) {
 			Resultados.setText(e.mensajeError());
+			System.out.println("eeeafddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 			boton.setBackground(Color.red);
-		}
-		
+		}		
 	}
 }

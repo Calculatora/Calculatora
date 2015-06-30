@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import calculatora.paneles.Resultados;
 
 public class Automata {
+	private static final int LONG_DISPLAY = 16;
 	private static JTextField Visor;
 	private static Double Operando1 = (double) 0;
 	private static Double Operando2 = (double) 0;
@@ -21,9 +22,7 @@ public class Automata {
 	
 	public static void CaracterIntroducido(char Car) throws OpcionErronea {
 		System.out.println(Car);
-//		if (Visor.getText().equals("No valido")){
-//			Visor.setText("");
-//		}
+		comprobarVisorValido();
 		System.out.println("Antes de comprobar el estado:_"+estado);
 		comprobarEstado(Car);
 		System.out.println("Despues de comprobar el estado:_"+estado);
@@ -74,17 +73,38 @@ public class Automata {
 			case 13:
 				addOperacion(Car);
 				break;
+			default:
+				throw new OpcionErronea();
 		}
+		comprobarLongitud();
 		System.out.println("Estado a la salida "+estado);
 		
 	}
 
-	private static void operar() {
+	private static void comprobarVisorValido() {
+		if (!comprobarNumeroComaOperador(Visor.getText())){
+			Visor.setText("0");
+		}
+	}
+
+	private static void comprobarLongitud() {
+		if (Visor.getText().length() > LONG_DISPLAY ){
+			Visor.setText(Visor.getText().substring(0,LONG_DISPLAY));
+		}
+	}
+
+	private static void operar() throws OpcionErronea {
 		Operando2 = Double.parseDouble(Resultados.dameResultado());
-		double resultado = obtenerResultado();
 		Operando1 = Operando2;
-		Operando2 = resultado;
-		Resultados.setText(String.valueOf(Operando2));
+		try{
+			double resultado = obtenerResultado();
+			Operando2 = resultado;
+			Resultados.setText(String.valueOf(Operando2));
+		} catch (OpcionErronea e){
+			System.out.println("entro en catch");
+			Operando2 = 0d;
+			Resultados.setText(e.divCero());			
+		}
 		System.out.println("SACAR TRYCATCH AQUI");
 	}
 
@@ -123,7 +143,7 @@ public class Automata {
 
 
 
-	private static void addDigito(char Car) {
+	private static void addDigito(char Car) throws OpcionErronea {
 		String cadena = String.valueOf(Car);
 		System.out.println("CADENA "+cadena);
 		boolean quitarCero = false;
@@ -137,6 +157,8 @@ public class Automata {
 			} else {
 				Resultados.setText(Resultados.dameResultado()+cadena);
 			}
+		} else {
+			throw new OpcionErronea();
 		}
 	}
 	
@@ -147,7 +169,7 @@ public class Automata {
 		if (Resultados.dameResultado().equals("0") && !cadena.equals(".")){
 			quitarCero = true;
 		}
-		if (comprobarNumeroOComa(Car)){
+		if (comprobarNumeroComa(Car)){
 			if(quitarCero){
 				Resultados.setText(cadena);
 			} else {
@@ -160,7 +182,10 @@ public class Automata {
 		}
 	}
 
-	private static boolean comprobarNumeroOComa(char Car){
+	private static boolean comprobarNumeroComaOperador(String cadena){
+		return Pattern.matches("([-]|)[0-9]+[.][0-9]+|([-]|)[0-9]+[.]|([-]|)[0-9]+|[+]|[-]|[*]|[/]", cadena);		
+	}
+	private static boolean comprobarNumeroComa(char Car){
 		String cadena = String.valueOf(Car);		
 		return Pattern.matches("[.]|[0-9]", cadena);
 	}
@@ -237,7 +262,7 @@ public class Automata {
 		operador = car;		
 	}
 	
-	private static double obtenerResultado() {
+	private static double obtenerResultado() throws OpcionErronea {
 		double resultado;
 		
 		switch(operador) {
@@ -251,7 +276,12 @@ public class Automata {
 				resultado = Operando1 * Operando2;
 				break;
 			case '/':
-				resultado = Operando1 / Operando2;
+				try{
+					resultado = Operando1 / Operando2;
+				} catch (Exception e){
+					System.out.println("Division erronea");
+					throw new OpcionErronea();
+				}
 				break;
 			default:
 				resultado = 0;					

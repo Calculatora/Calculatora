@@ -1,433 +1,398 @@
 package calculatora;
 
-import java.awt.TextField;
+import java.util.regex.Pattern;
+
+import javax.swing.JTextField;
 
 public class Automata {
-	private static byte Estado = 0; 
-	private static TextField Visor;
-	private static double Operando1=0d;
-	private static double Operando2=0d;
-	private static char Operador=' '; 
+	private static final int LONG_DISPLAY = 16;
+	private static JTextField Visor;
+	private static Double Operando1 = (double) 0;
+	private static Double Operando2 = (double) 0;
+	private static char operador;
+	private static byte estado;
 	
-	public Automata(TextField Visor) {
+	
+	
+	public Automata(JTextField Visor) {
 		this.Visor = Visor;
 	}
 	
 	public static void CaracterIntroducido(char Car) throws OpcionErronea {
-		if (Visor.getText().equals("No valido")){
-			Visor.setText("");
-		}
-		
-		//Visor.setText(Visor.getText()+Car);
-		
-		switch(Estado) {
-		/*
-		 * A partir del Estado 0.
-		 */
-			case 0:
-				switch(Car) {
-				
-					
-				/*
-				 * Cambia a Estado 1 si es un "+,-,* o /".
-				 */
-					case '-':
-					case '+':
-					case '*':
-					case '/':
-						Estado=1;
-							Visor.setText(Visor.getText()+Car);
-						break;
-				/*
-				 * Cambia a estado Estado 2 si es un numero.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=2;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					
-					}
-					break;
-		/*
-		 * A partir del Estado 1.
-		 */
+
+		System.out.println(Car);
+		comprobarVisorValido();
+		System.out.println("Antes de comprobar el estado:_"+estado);
+		comprobarEstado(Car);
+		System.out.println("Despues de comprobar el estado:_"+estado);
+		switch(estado){ 
+		//El case 0 no es necesario, nunca ocurrirá (si está en 0 se cambia a 1 en comprobar estado)
 			case 1:
-				switch(Car) {
-				/*
-				 * Cambia el operador y se mantiene en estado 1.
-				 */
-					case '-':
-					case '+':
-					case '*':
-					case '/':
-						Estado=1;
-						String aux = new String();
-						aux = Visor.getText().substring(0, 0);
-						Visor.setText(aux+Car);
-						break;
-				/*
-				 * Cambia a estado Estado 2 si es numero.
-				 */	
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=2;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-		/*
-		 * A partir del estado 2
-		 */
+				addDigito(Car);
+				break;
 			case 2:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 2 si es igual.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=2;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					case '.':
-						Estado=3;
-						Visor.setText(Visor.getText()+Car);
-						break;
-				/*
-				 * Pasa al estado 5 si es un operador.
-				 */
-					case '-':
-					case '+':
-					case '*':
-					case '/':
-						Estado=5;
-							Visor.setText(Visor.getText()+Car);
-					/*
-					 * Guardamos el operando1 y el operador en las variables correspondientes.
-					 */							
-							Operando1 = Double.valueOf(Visor.getText().substring(0, Visor.getText().length()-1)).doubleValue();
-							Operador = (char) Visor.getText().charAt(Visor.getText().length()-1);
-							//System.out.println(Operador +" Operador   "+Operando1 + " Operando1");
-							
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-			/*
-			 * A partir del estado 3
-			 */
+				cambiarSigno();
+				break;
 			case 3:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 4 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=4;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-		/*
-		 * A partir del estado 4
-		 */
+				addComa(Car);
+				break;
 			case 4:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 4 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=4;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-				/*
-				 * Cambia a estado Estado 5 si es operador.
-				 */
-					case '-':
-					case '+':
-					case '*':
-					case '/':
-						Estado=5;
-							Visor.setText(Visor.getText()+Car);
-					/*
-					 * Guardamos el operando1 y el operador en las variables correspondientes.
-					 */							
-							Operando1 = Double.valueOf(Visor.getText().substring(0, Visor.getText().length()-1)).doubleValue();
-							Operador = (char) Visor.getText().charAt(Visor.getText().length()-1);
-							//System.out.println(Operador +" Operador   "+Operando1 + " Operando1");
-							
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-		/*
-		 * A partir del estado 5
-		 */
+				addDigito(Car);
+				break;
 			case 5:
-				Operando1 = Double.valueOf(Visor.getText().substring(0, Visor.getText().length()-2)).doubleValue();
-				
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 7 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=7;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					/*
-					 * Cambia a estado Estado 6 si ponemos "-" (num. negativo).
-					 */
-					case '-':
-						Estado=6;
-						Visor.setText(Visor.getText()+Car);
-						break;
-				/*
-				 * Controlamos que se sobreescriba la operacion (verificar funcionamiento).
-				 */
-					case '+':
-					case '*':
-					case '/':
-						Estado=5;
-						String aux = new String();
-						aux = Visor.getText().substring(0, 0);
-						Visor.setText(aux+Car);
-						Operador = Visor.getText().charAt(Visor.getText().length()-1);
-						System.out.println(Operador);
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;						
-		/*
-		 * A partir del estado 6
-		 */
+				cambiarSigno();
+				break;
 			case 6:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 7 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=7;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-					
-		/*
-		 * A partir del estado 7
-		 */
+				addOperacion(Car);
+				break;
 			case 7:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 7 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=7;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					case '.':
-						Estado=8;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					case '=':
-						Estado=10;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-		/*
-		 * A partir del estado 8
-		 */
+				addDigito(Car);
+				break;
 			case 8:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 9 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=9;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-		/*
-		 * A partir del estado 9
-		 */
+				cambiarSigno();
+				break;
 			case 9:
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 9 si digito.
-				 */
-					case '0':
-					case '1':
-					case '2':
-					case '3':
-					case '4':
-					case '5':
-					case '6':
-					case '7':
-					case '8':
-					case '9':
-						Estado=9;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					case '=':
-						Estado=10;
-						Visor.setText(Visor.getText()+Car); 
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;
-		/*
-		 * A partir del estado 10
-		 */
+				addComa(Car);
+				break;				
 			case 10:
-				/*
-				 * Hacemos la operacion y dejamos en la pantalla el resultado solamente
-				 */
-				ObtenerResultado(Visor.getText());
-				
-				switch(Car) {
-				/*
-				 * Cambia a estado Estado 5 si es operador.
-				 */
-					case '-':
-					case '+':
-					case '*':
-					case '/':
-						Estado=5;
-							Visor.setText(Visor.getText()+Car);
-						break;
-					default:
-						//Lanzar();
-						throw new OpcionErronea();
-					}
-					break;	
-		}	
-	}
-	
-	private static void ObtenerResultado(String Cadena){
-		Operando1 = Double.valueOf(Cadena).doubleValue();
-		System.out.println(Operando1);
-		
-	}
-	
-	
-	private static double AObtenerResultado() {
-		
-		switch(Operador) {
-			case '+':
-				return Operando1 + Operando2;
-			case '-':
-				return Operando1 - Operando2;
-			case '*':
-				return Operando1 * Operando2;
-			case '/':
-				return Operando1 / Operando2;
+				addDigito(Car);
+				break;
+			case 11:
+				cambiarSigno();
+			case 12:
+				operar();
+				break;
 			default:
-				return 0d;
-		} 
+				throw new OpcionErronea();
+		}
+		comprobarLongitud();
+		System.out.println("Estado a la salida "+estado);
+		
+	}
+
+	private static void comprobarVisorValido() {
+		if (!comprobarNumeroComaOperador(Visor.getText())){
+			Visor.setText("0");
+		}
+		System.out.println("IMCOMPLETO");
+	}
+
+
+	private static void comprobarEstado(char Car) throws OpcionErronea{
+		switch(estado){
+		case 0:
+			estado0(Car);
+			break;
+		case 1:
+			estado1(Car);
+			break;
+		case 2:
+			estado2(Car);
+			break;
+		case 3:
+			estado3(Car);
+			break;
+		case 4:
+			estado4(Car);
+			break;
+		case 5:
+			estado5(Car);
+			break;
+		case 6:
+			estado6(Car);
+			break;
+		case 7:
+			estado7(Car);
+			break;
+		case 8:
+			estado8(Car);
+			break;
+		case 9:
+			estado9(Car);
+			break;
+		case 10:
+			estado10(Car);
+			break;
+		case 11:
+			estado11(Car);
+			break;
+		case 12:
+			estado12(Car);
+			break;
+		}
+	} 
+	
+
+	private static void estado12(char car) throws OpcionErronea {
+		if (comprobarOperador(car)){
+			estado = 6;
+		} else {
+			estado = 0;
+			estado0(car);
+		}
+	}
+
+	private static void estado11(char car) throws OpcionErronea {
+		estado = 10;
+		estado10(car);
+	}
+
+	private static void estado10(char car) throws OpcionErronea {
+		estado9(car);		
+	}
+
+	private static void estado9(char car) throws OpcionErronea {
+		if (comprobarNumero(car)){
+			estado = 10;
+		} else if(comprobarOperador(car)){
+			estado = 13;
+		} else if (comparar(car,"±")){
+			estado = 11;
+		} else {
+			throw new OpcionErronea();
+		}
+	}
+
+	private static void estado8(char car) throws OpcionErronea {
+		estado = 7;
+		estado7(car);
+	}
+
+	private static void estado7(char car) throws OpcionErronea {
+		if (comprobarNumero(car)){
+			//
+//		} else if(comprobarOperador(car)){
+//			estado = 6;
+		} else if (comparar(car,"=")){
+			estado = 12;
+		} else if (comprobarOperador(car)){
+			estado = 13;
+		} else if (comparar(car,".")){
+			estado = 9;
+		} else if (comparar(car,"±")){
+			estado = 8;
+		} else {
+			throw new OpcionErronea();
+		}		
+	}
+
+	private static void estado6(char car) throws OpcionErronea {
+		if (comprobarNumero(car)){
+			estado = 7;
+		} else if (comparar(car,"±")){
+			estado = 8;
+		} else if (comparar(car,".")){
+			estado = 9;
+		} else {
+			throw new OpcionErronea();
+		}
+		Visor.setText("0");;
+	}
+
+	private static void estado5(char car) throws OpcionErronea {
+		estado = 4;
+		estado4(car);		
+	}
+
+	private static void estado4(char car) throws OpcionErronea {
+		estado3(car);		
+	}
+
+	private static void estado3(char car) throws OpcionErronea {
+		if (comprobarNumero(car)){
+			estado = 4;
+		} else if(comprobarOperador(car)){
+			estado = 6;
+		} else if (comparar(car,"±")){
+			estado = 5;
+		} else {
+			throw new OpcionErronea();
+		}
+	}
+
+	private static void estado2(char car) throws OpcionErronea {
+		estado = 1;
+		estado1(car);
+	}
+
+	private static void estado1(char car) throws OpcionErronea {
+		if (comprobarNumero(car)){
+			//
+		} else if(comprobarOperador(car)){
+			estado = 6;
+		} else if (comparar(car,".")){
+			estado = 3;
+		} else if (comparar(car,"±")){
+			estado = 2;
+		} else {
+			throw new OpcionErronea();
+		}		
+	}
+
+	private static void estado0(char car) throws OpcionErronea {
+		if(comparar(car,"±")){
+			estado = 2;
+		} else if (comprobarNumeroComa(car)){
+			estado = 1;
+		} else {
+			throw new OpcionErronea();
+		}
+		Visor.setText("0");
+	}
+	
+	private static boolean comparar(char car, String text){
+		String c = String.valueOf(car);
+		return c.equals(text);
+	}
+	
+	
+	
+	
+	
+	
+	private static void operar() throws OpcionErronea {
+		Operando2 = Double.parseDouble(Visor.getText());
+		try{
+			double resultado = obtenerResultado();
+			Operando2 = resultado;
+			Visor.setText(String.valueOf(Operando2));
+		} catch (OpcionErronea e){
+			Operando2 = 0d;
+			Visor.setText(e.divCero());			
+		}
+	}
+	
+	private static double obtenerResultado() throws OpcionErronea {
+		double resultado;
+		
+		switch(operador) {
+			case '+':
+				resultado =  Operando1 + Operando2;
+				break;
+			case '-':
+				resultado = Operando1 - Operando2;
+				break;
+			case '*':
+				resultado = Operando1 * Operando2;
+				break;
+			case '/':
+				try{
+					resultado = Operando1 / Operando2;
+				} catch (Exception e){
+					System.out.println("Division erronea");
+					throw new OpcionErronea();
+				}
+				break;
+			default:
+				resultado = 0;					
+		}
+		return resultado;
+	}
+	
+		
+	
+	private static void comprobarLongitud() {
+		if (Visor.getText().length() > LONG_DISPLAY ){
+			Visor.setText(Visor.getText().substring(0,LONG_DISPLAY));
+		}
+	}
+
+	private static void addOperacion(char Car) {
+		Operando1 = Double.parseDouble(Visor.getText());	
+		System.out.println(Visor.getText());
+		System.out.println("Operando 1: "+Operando1);
+		operador = Car;
+		String resultado = String.valueOf(Car);
+		Visor.setText(resultado);
+	}
+
+
+
+	private static void cambiarSigno() {
+		try {
+			String aux = Visor.getText().substring(0,1);
+			if (aux.equals("-")){
+				aux = Visor.getText().substring(1, Visor.getText().length());
+				Visor.setText(aux);		
+			} else {
+				Visor.setText("-"+Visor.getText());
+			}
+		} catch (StringIndexOutOfBoundsException e){
+			Visor.setText("0");
+		}
+	}
+
+
+
+	private static void addDigito(char Car) throws OpcionErronea {
+		String cadena = String.valueOf(Car);
+		boolean quitarCero = false;
+
+		if (Visor.getText().equals("0")){
+			quitarCero = true;
+		}
+		if (comprobarNumero(Car)){
+			if(quitarCero){
+				Visor.setText(cadena);
+			} else {
+				Visor.setText(Visor.getText()+cadena);
+			}
+		} else {
+			throw new OpcionErronea();
+		}
+	}
+	
+	private static void addComa(char Car) {
+		String cadena = String.valueOf(Car);
+		boolean quitarCero = false;
+		if (Visor.getText().equals("0") && !cadena.equals(".")){
+			quitarCero = true;
+		}
+		if (comprobarNumeroComa(Car)){
+			if(quitarCero){
+				Visor.setText(cadena);
+			} else {
+				if (Visor.getText().equals("")){
+					Visor.setText("0"+cadena);
+				} else {
+					Visor.setText(Visor.getText()+cadena);
+				}
+			}
+		}
+	}
+
+	private static boolean comprobarNumeroComaOperador(String cadena){
+		return Pattern.matches("([-]|)[0-9]+[.][0-9]+|([-]|)[0-9]+[.]|([-]|)[0-9]+|[+]|[-]|[*]|[/]", cadena);		
+	}
+	private static boolean comprobarNumeroComa(char Car){
+		String cadena = String.valueOf(Car);		
+		return Pattern.matches("[.]|[0-9]", cadena);
+	}
+
+	private static boolean comprobarNumero(char Car){
+		String cadena = String.valueOf(Car);		
+		return Pattern.matches("[0-9]", cadena);
+	}
+	
+	private static boolean comprobarOperador(char Car){
+		String cadena = String.valueOf(Car);
+		return Pattern.matches("[+]|[-]|[*]|[/]", cadena);
+	}
+	
+	public static void setEstado(byte est){
+		if (est == -1) {
+			if (estado == 4){
+				estado = 1;
+			} else if (estado == 10){
+				estado = 7;
+			}
+		} else {
+			estado = est;
+		}
+	}
+
+	public static int getEstado() {
+		return estado;
 	}
 	
 }

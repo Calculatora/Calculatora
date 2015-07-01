@@ -1,6 +1,7 @@
 package calculatora.superClass;
 
-import java.awt.Button;
+import javax.swing.JButton;
+
 
 /**
  * Clase que pone el bloque de los dígitos y operadores en la interfaz.
@@ -8,7 +9,7 @@ import java.awt.Button;
  *
  */
 public class BloqueBotones  extends Bloque {
-	protected Button[] Botones;
+	protected JButton[] Botones;
 	
 	/**
 	 * Constructor que inicializa el objeto BloqueBotones.
@@ -21,7 +22,7 @@ public class BloqueBotones  extends Bloque {
 	 * Método que devuelve un array.
 	 * @return
 	 */
-	public Button[] DameBotones(){
+	public JButton[] DameBotones(){
 		return Botones;
 	}
 }

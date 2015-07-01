@@ -1,6 +1,6 @@
 package calculatora.superClass;
 
-import java.awt.Panel;
+import javax.swing.JPanel;
 
 /**
  * Clase que pone el bloque del panel de resultados en la interfaz.
@@ -8,7 +8,7 @@ import java.awt.Panel;
  *
  */
 public abstract class Bloque {
-	protected Panel MiPanel = new Panel();
+	protected JPanel MiPanel = new JPanel();
 	
 	/**
 	 * Constructor que inicializa el objeto Bloque.
@@ -20,7 +20,7 @@ public abstract class Bloque {
 	 * Método que devuelve el panel.
 	 * @return
 	 */
-	public Panel DamePanel(){
+	public JPanel DamePanel(){
 		return MiPanel;		
 	}
 }

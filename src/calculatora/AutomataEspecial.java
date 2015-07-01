@@ -19,6 +19,7 @@ public class AutomataEspecial {
 	 */
 	public static void limpiarUltimoNumero() {
 		Resultados.setText("0");		
+		Automata.setEstado( (byte) -1);
 	}
 
 	/**
@@ -26,23 +27,23 @@ public class AutomataEspecial {
 	 */
 	public static void limpiarOperaciones() {
 		limpiarUltimoNumero();
-		System.out.println("Implementar llamada a automata");
+		Automata.setEstado((byte) 0);
 	}
 
-	/**
-	 * Cambia el signo de número en display
-	 */
-	public static void cambiarSigno() {
-		try {
-			String sNumero = Resultados.dameResultado();
-			Double dNumero = Double.parseDouble(sNumero);
-			dNumero = dNumero * (-1);
-			sNumero = Double.toString(dNumero);
-			Resultados.setText(sNumero);
-		} catch (NumberFormatException e){
-			limpiarUltimoNumero();
-		}
-	}
+//	/**
+//	 * Cambia el signo de número en display
+//	 */
+//	public static void cambiarSigno() {
+//		try {
+//			String sNumero = Resultados.dameResultado();
+//			Double dNumero = Double.parseDouble(sNumero);
+//			dNumero = dNumero * (-1);
+//			sNumero = Double.toString(dNumero);
+//			Resultados.setText(sNumero);
+//		} catch (NumberFormatException e){
+//			limpiarUltimoNumero();
+//		}
+//	}
 
 	/**
 	 * Guarda el número en display en memoria

@@ -24,6 +24,13 @@ public class Automata {
 		System.out.println("Antes de comprobar el estado:_"+estado);
 		comprobarEstado(Car);
 		System.out.println("Despues de comprobar el estado:_"+estado);
+		ejecutarEstado(Car);
+		comprobarLongitud();
+		System.out.println("Estado a la salida "+estado);
+		
+	}
+
+	private static void ejecutarEstado(char Car) throws OpcionErronea {
 		switch(estado){ 
 		//El case 0 no es necesario, nunca ocurrirá (si está en 0 se cambia a 1 en comprobar estado)
 			case 1:
@@ -64,9 +71,6 @@ public class Automata {
 			default:
 				throw new OpcionErronea();
 		}
-		comprobarLongitud();
-		System.out.println("Estado a la salida "+estado);
-		
 	}
 
 	private static void comprobarVisorValido() {
@@ -159,8 +163,8 @@ public class Automata {
 	private static void estado7(char car) throws OpcionErronea {
 		if (comprobarNumero(car)){
 			//
-//		} else if(comprobarOperador(car)){
-//			estado = 6;
+		} else if(comprobarOperador(car)){
+			estado = 6;
 		} else if (comparar(car,"=")){
 			estado = 12;
 		} else if (comprobarOperador(car)){
@@ -253,6 +257,9 @@ public class Automata {
 		try{
 			double resultado = obtenerResultado();
 			Operando2 = resultado;
+			System.out.println("==================================");
+			System.out.println(resultado);
+			System.out.println("==================================");
 			Visor.setText(String.valueOf(Operando2));
 		} catch (OpcionErronea e){
 			Operando2 = 0d;

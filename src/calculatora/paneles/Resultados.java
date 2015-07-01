@@ -37,7 +37,7 @@ public class Resultados extends Bloque {
 		resultado.setFont (fuente);	
 		resultado.setEditable(false);
 		resultado.setEnabled(false); 
-//		resultado.setHorizontalAlignment(JTextField.RIGHT);
+		resultado.setHorizontalAlignment(JTextField.RIGHT);
 		MiPanel.add(resultado);	
 	}
 	

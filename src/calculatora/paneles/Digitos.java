@@ -35,8 +35,12 @@ public class Digitos extends BloqueBotones{
 		GridLayout LayoutBotones = new GridLayout(4,3);
 		MiPanel.setLayout(LayoutBotones);
 		
+<<<<<<< HEAD
 		Botones = new JButton[NUM_DIGITOS];
 		
+=======
+		Botones = new JButton[NUM_DIGITOS];
+>>>>>>> dev
 		Botones[0] = new JButton("=");
 		Botones[1] = new JButton(".");
 		Botones[2] = new JButton("0");

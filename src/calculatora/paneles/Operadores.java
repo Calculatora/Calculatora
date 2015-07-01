@@ -9,6 +9,7 @@ import javax.swing.JButton;
 
 import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
+import calculatora.eventos.ControlTeclado;
 import calculatora.superClass.BloqueBotones;
 /**
  * Clase que pone operadores ("+", "-", "*" y "/") a los botones.
@@ -29,8 +30,9 @@ public class Operadores extends BloqueBotones{
 	 * Constructor que inicia el objeto operadores con un color.
 	 * @param color
 	 */
-	public Operadores(Color color) {
+	public Operadores(Color col) {
 		super();
+		color = col;
 		GridLayout LayoutBotones = new GridLayout(NUM_BOTONES,1);
 		MiPanel.setLayout(LayoutBotones);
 		Botones = new JButton[NUM_BOTONES];
@@ -45,6 +47,7 @@ public class Operadores extends BloqueBotones{
 			MiPanel.add(Botones[i]);
 			Botones[i].addMouseListener(new ControlRaton(color));
 			Botones[i].addFocusListener(new ControlFoco(color));
+			Botones[i].addKeyListener(new ControlTeclado());
 			Botones[i].setBackground(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));
 			Botones[i].setFont (fuente);		

@@ -19,7 +19,6 @@ public class AutomataEspecial {
 	 */
 	public static void limpiarUltimoNumero() {
 		Resultados.setText("0");		
-		Automata.setEstado( (byte) -1);
 	}
 
 	/**

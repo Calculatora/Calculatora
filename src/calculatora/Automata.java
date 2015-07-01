@@ -1,7 +1,5 @@
 package calculatora;
 
-import java.util.regex.Pattern;
-
 import javax.swing.JTextField;
 
 public class Automata {
@@ -74,7 +72,7 @@ public class Automata {
 	}
 
 	private static void comprobarVisorValido() {
-		if (!comprobarNumeroComaOperador(Visor.getText())){
+		if (!Utilidades.comprobarNumeroComaOperador(Visor.getText())){
 			Visor.setText("0");
 		}
 		System.out.println("IMCOMPLETO");
@@ -126,7 +124,7 @@ public class Automata {
 	} 
 	
 	private static void estado12(char car) throws OpcionErronea {
-		if (comprobarOperador(car)){
+		if (Utilidades.comprobarOperador(car)){
 			estado = 6;
 		} else {
 			estado = 0;
@@ -144,11 +142,11 @@ public class Automata {
 	}
 
 	private static void estado9(char car) throws OpcionErronea {
-		if (comprobarNumero(car)){
+		if (Utilidades.comprobarNumero(car)){
 			estado = 10;
-		} else if(comprobarOperador(car)){
+		} else if(Utilidades.comprobarOperador(car)){
 			estado = 13;
-		} else if (comparar(car,"±")){
+		} else if (Utilidades.comparar(car,"±")){
 			estado = 11;
 		} else {
 			throw new OpcionErronea();
@@ -161,17 +159,17 @@ public class Automata {
 	}
 
 	private static void estado7(char car) throws OpcionErronea {
-		if (comprobarNumero(car)){
+		if (Utilidades.comprobarNumero(car)){
 			//
-		} else if(comprobarOperador(car)){
+		} else if(Utilidades.comprobarOperador(car)){
 			estado = 6;
-		} else if (comparar(car,"=")){
+		} else if (Utilidades.comparar(car,"=")){
 			estado = 12;
-		} else if (comprobarOperador(car)){
+		} else if (Utilidades.comprobarOperador(car)){
 			estado = 13;
-		} else if (comparar(car,".")){
+		} else if (Utilidades.comparar(car,".")){
 			estado = 9;
-		} else if (comparar(car,"±")){
+		} else if (Utilidades.comparar(car,"±")){
 			estado = 8;
 		} else {
 			throw new OpcionErronea();
@@ -179,11 +177,11 @@ public class Automata {
 	}
 
 	private static void estado6(char car) throws OpcionErronea {
-		if (comprobarNumero(car)){
+		if (Utilidades.comprobarNumero(car)){
 			estado = 7;
-		} else if (comparar(car,"±")){
+		} else if (Utilidades.comparar(car,"±")){
 			estado = 8;
-		} else if (comparar(car,".")){
+		} else if (Utilidades.comparar(car,".")){
 			estado = 9;
 		} else {
 			throw new OpcionErronea();
@@ -201,11 +199,11 @@ public class Automata {
 	}
 
 	private static void estado3(char car) throws OpcionErronea {
-		if (comprobarNumero(car)){
+		if (Utilidades.comprobarNumero(car)){
 			estado = 4;
-		} else if(comprobarOperador(car)){
+		} else if(Utilidades.comprobarOperador(car)){
 			estado = 6;
-		} else if (comparar(car,"±")){
+		} else if (Utilidades.comparar(car,"±")){
 			estado = 5;
 		} else {
 			throw new OpcionErronea();
@@ -218,13 +216,13 @@ public class Automata {
 	}
 
 	private static void estado1(char car) throws OpcionErronea {
-		if (comprobarNumero(car)){
+		if (Utilidades.comprobarNumero(car)){
 			//
-		} else if(comprobarOperador(car)){
+		} else if(Utilidades.comprobarOperador(car)){
 			estado = 6;
-		} else if (comparar(car,".")){
+		} else if (Utilidades.comparar(car,".")){
 			estado = 3;
-		} else if (comparar(car,"±")){
+		} else if (Utilidades.comparar(car,"±")){
 			estado = 2;
 		} else {
 			throw new OpcionErronea();
@@ -232,19 +230,14 @@ public class Automata {
 	}
 
 	private static void estado0(char car) throws OpcionErronea {
-		if(comparar(car,"±")){
+		if(Utilidades.comparar(car,"±")){
 			estado = 2;
-		} else if (comprobarNumeroComa(car)){
+		} else if (Utilidades.comprobarNumeroComa(car)){
 			estado = 1;
 		} else {
 			throw new OpcionErronea();
 		}
 		Visor.setText("0");
-	}
-	
-	private static boolean comparar(char car, String text){
-		String c = String.valueOf(car);
-		return c.equals(text);
 	}
 	
 	
@@ -336,7 +329,7 @@ public class Automata {
 		if (Visor.getText().equals("0")){
 			quitarCero = true;
 		}
-		if (comprobarNumero(Car)){
+		if (Utilidades.comprobarNumero(Car)){
 			if(quitarCero){
 				Visor.setText(cadena);
 			} else {
@@ -353,7 +346,7 @@ public class Automata {
 		if (Visor.getText().equals("0") && !cadena.equals(".")){
 			quitarCero = true;
 		}
-		if (comprobarNumeroComa(Car)){
+		if (Utilidades.comprobarNumeroComa(Car)){
 			if(quitarCero){
 				Visor.setText(cadena);
 			} else {
@@ -364,24 +357,6 @@ public class Automata {
 				}
 			}
 		}
-	}
-
-	private static boolean comprobarNumeroComaOperador(String cadena){
-		return Pattern.matches("([-]|)[0-9]+[.][0-9]+|([-]|)[0-9]+[.]|([-]|)[0-9]+|[+]|[-]|[*]|[/]", cadena);		
-	}
-	private static boolean comprobarNumeroComa(char Car){
-		String cadena = String.valueOf(Car);		
-		return Pattern.matches("[.]|[0-9]", cadena);
-	}
-
-	private static boolean comprobarNumero(char Car){
-		String cadena = String.valueOf(Car);		
-		return Pattern.matches("[0-9]", cadena);
-	}
-	
-	private static boolean comprobarOperador(char Car){
-		String cadena = String.valueOf(Car);
-		return Pattern.matches("[+]|[-]|[*]|[/]", cadena);
 	}
 	
 	public static void setEstado(byte est){

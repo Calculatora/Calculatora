@@ -5,11 +5,13 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import calculatora.eventos.ControlTeclado;
 import calculatora.eventos.ControlVentana;
 import calculatora.paneles.Digitos;
 import calculatora.paneles.Especiales;
 import calculatora.paneles.Operadores;
 import calculatora.paneles.Resultados;
+import calculatora.superClass.BloqueBotones;
 
 
 public class GUICalculadora {
@@ -19,10 +21,10 @@ public class GUICalculadora {
 		Color colorOperaciones = new Color(154,216,239);
 		Color colorResultado = new Color(60,157,255);
 		Color colorEspeciales = new Color(128,234,232);
-		Digitos InstanciaDigitos = new Digitos(colorDigitos);
-		Operadores InstanciaOperadores = new Operadores(colorOperaciones);
+		BloqueBotones InstanciaDigitos = new Digitos(colorDigitos);
+		BloqueBotones InstanciaOperadores = new Operadores(colorOperaciones);
 		Resultados InstanciaResultados = new Resultados(colorResultado);
-		Especiales InstanciaEspeciales = new Especiales(colorEspeciales);
+		BloqueBotones InstanciaEspeciales = new Especiales(colorEspeciales);
 		
 		JPanel PanelCentral = new JPanel();
 		PanelCentral.add(InstanciaEspeciales.DamePanel());
@@ -30,7 +32,7 @@ public class GUICalculadora {
 		PanelCentral.add(InstanciaOperadores.DamePanel());
 		MiMarco.add(PanelCentral,"Center");
 		MiMarco.add(InstanciaResultados.DamePanel(),"North");
-
+		MiMarco.addKeyListener(new ControlTeclado(InstanciaDigitos,InstanciaOperadores,InstanciaEspeciales));
 
 		MiMarco.setSize(360,480);
 		MiMarco.setTitle("Calculadora");  

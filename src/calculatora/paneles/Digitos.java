@@ -30,8 +30,9 @@ public class Digitos extends BloqueBotones{
 	 * Constructor que inicializa el objeto Digisto indicando el color de los botones.
 	 * @param color
 	 */
-	public Digitos(Color color) {
+	public Digitos(Color col) {
 		super();
+		color = col;
 		GridLayout LayoutBotones = new GridLayout(4,3);
 		MiPanel.setLayout(LayoutBotones);
 		

@@ -185,7 +185,9 @@ public class Automata {
 			estado = 8;
 		} else if (comparar(car,".")){
 			estado = 9;
-		} else {
+		} /*else if (comprobarOperador(car)){
+			estado = 6;
+		}*/ else {
 			throw new OpcionErronea();
 		}
 		Visor.setText("0");;
@@ -234,8 +236,10 @@ public class Automata {
 	private static void estado0(char car) throws OpcionErronea {
 		if(comparar(car,"±")){
 			estado = 2;
-		} else if (comprobarNumeroComa(car)){
+		} else if (comprobarNumero(car)){
 			estado = 1;
+		} else if (comparar(car,".")) {
+			estado = 3;
 		} else {
 			throw new OpcionErronea();
 		}
@@ -260,6 +264,9 @@ public class Automata {
 			System.out.println("==================================");
 			System.out.println(resultado);
 			System.out.println("==================================");
+			/**if(String.valueOf(Operando2).equals("NaN")|| String.valueOf(Operando2).equals("Infinity") ){
+				Visor.setText("Resultado indefinido");
+			}*/
 			Visor.setText(String.valueOf(Operando2));
 		} catch (OpcionErronea e){
 			Operando2 = 0d;
@@ -303,7 +310,8 @@ public class Automata {
 	}
 
 	private static void addOperacion(char Car) {
-		Operando1 = Double.parseDouble(Visor.getText());	
+		
+		Operando1 = Double.parseDouble(Visor.getText());
 		System.out.println(Visor.getText());
 		System.out.println("Operando 1: "+Operando1);
 		operador = Car;
@@ -311,7 +319,11 @@ public class Automata {
 		Visor.setText(resultado);
 	}
 
+	private static boolean esNegativo(String display){
+		return display.charAt(0) == '-';
+	}
 
+	
 
 	private static void cambiarSigno() {
 		try {
@@ -326,7 +338,8 @@ public class Automata {
 			Visor.setText("0");
 		}
 	}
-
+	
+	
 
 
 	private static void addDigito(char Car) throws OpcionErronea {
@@ -336,8 +349,14 @@ public class Automata {
 		if (Visor.getText().equals("0")){
 			quitarCero = true;
 		}
+		
 		if (comprobarNumero(Car)){
-			if(quitarCero){
+			if(esNegativo(Visor.getText())&&Visor.getText().charAt(1)=='0'){
+				
+				Visor.setText("-"+cadena);
+				
+			}
+			else if(quitarCero){
 				Visor.setText(cadena);
 			} else {
 				Visor.setText(Visor.getText()+cadena);

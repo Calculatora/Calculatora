@@ -11,26 +11,26 @@ public class ControlVentana implements WindowListener{
 	}
 
 	public void windowActivated(WindowEvent e){
-        System.out.println("windowActivated");
+//        System.out.println("windowActivated");
     }
 
     public void windowClosed(WindowEvent e){
-        System.out.println("windowClosed");
+//        System.out.println("windowClosed");
     }
 
     public void windowDeactivated(WindowEvent e){
-        System.out.println("windowDeactivated");
+//        System.out.println("windowDeactivated");
     }
 
     public void windowDeiconified(WindowEvent e){
-        System.out.println("windowDeiconified");
+//        System.out.println("windowDeiconified");
     }
 
     public void windowIconified(WindowEvent e){
-        System.out.println("windowIconified");
+//        System.out.println("windowIconified");
     }
 
     public void windowOpened(WindowEvent e){
-        System.out.println("windowOpened");
+//        System.out.println("windowOpened");
     }
 }

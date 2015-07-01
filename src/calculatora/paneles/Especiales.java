@@ -1,10 +1,11 @@
 package calculatora.paneles;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+
+import javax.swing.JButton;
 
 import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
@@ -25,16 +26,16 @@ public class Especiales extends BloqueBotones{
 		GridLayout LayoutBotones = new GridLayout(1,4);
 		MiPanel.setLayout(LayoutBotones);
 		
-		Botones = new Button[NUM_BOTONES];
+		Botones = new JButton[NUM_BOTONES];
 		
-		Botones[0] = new Button("CE");
-		Botones[1] = new Button("C");
-		Botones[2] = new Button("±");
-		Botones[3] = new Button("M+");
-		Botones[4] = new Button("Mc");
-		Botones[5] = new Button("Mr");
+		Botones[0] = new JButton("CE");
+		Botones[1] = new JButton("C");
+		Botones[2] = new JButton("±");
+		Botones[3] = new JButton("M+");
+		Botones[4] = new JButton("Mc");
+		Botones[5] = new JButton("Mr");
 
-		Font fuente=new Font("Dialog", Font.BOLD, 24);
+		Font fuente=new Font("Dialog", Font.BOLD, 14);
 		
 		for (int i = 0; i < Botones.length; i++){
 			MiPanel.add(Botones[i]);

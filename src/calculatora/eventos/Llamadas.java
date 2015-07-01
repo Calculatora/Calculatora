@@ -49,7 +49,6 @@ public class Llamadas {
 			Automata.CaracterIntroducido(Car); 
 		} catch(OpcionErronea e) {
 			Resultados.setText(e.mensajeError());
-			System.out.println("eeeafddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 			boton.setBackground(Color.red);
 		}		
 	}

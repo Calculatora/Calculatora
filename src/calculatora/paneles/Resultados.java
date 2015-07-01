@@ -54,7 +54,6 @@ public class Resultados extends Bloque {
 	 * @return
 	 */
 	public static String dameResultado(){
-		System.out.println("TEXT FIELD"+resultado.getText());
 		return resultado.getText();
 	}
 	

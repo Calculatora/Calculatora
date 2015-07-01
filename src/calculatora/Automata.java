@@ -4,8 +4,6 @@ import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 
-import calculatora.paneles.Resultados;
-
 public class Automata {
 	private static final int LONG_DISPLAY = 16;
 	private static JTextField Visor;
@@ -28,50 +26,40 @@ public class Automata {
 		System.out.println("Despues de comprobar el estado:_"+estado);
 		switch(estado){ 
 		//El case 0 no es necesario, nunca ocurrirá (si está en 0 se cambia a 1 en comprobar estado)
-
 			case 1:
-				addDigito(Car);//Tiene que comprobar el dígito y añadirlo
+				addDigito(Car);
 				break;
 			case 2:
 				cambiarSigno();
-				estado = 1;
 				break;
 			case 3:
 				addComa(Car);
-				estado = 4;
 				break;
 			case 4:
 				addDigito(Car);
 				break;
 			case 5:
 				cambiarSigno();
-				estado = 4;
 				break;
 			case 6:
-				addOperacionPrimera(Car);
+				addOperacion(Car);
 				break;
 			case 7:
 				addDigito(Car);
 				break;
 			case 8:
 				cambiarSigno();
-				estado = 7;
 				break;
 			case 9:
 				addComa(Car);
-				estado = 10;
 				break;				
 			case 10:
 				addDigito(Car);
 				break;
 			case 11:
 				cambiarSigno();
-				estado = 10;
 			case 12:
 				operar();
-				break;
-			case 13:
-				addOperacion(Car);
 				break;
 			default:
 				throw new OpcionErronea();
@@ -85,6 +73,7 @@ public class Automata {
 		if (!comprobarNumeroComaOperador(Visor.getText())){
 			Visor.setText("0");
 		}
+		System.out.println("IMCOMPLETO");
 	}
 
 
@@ -129,86 +118,102 @@ public class Automata {
 		case 12:
 			estado12(Car);
 			break;
-			
 		}
 	} 
 	
 	private static void estado12(char car) throws OpcionErronea {
-		estado = 0;
-		estado0(car);		
+		if (comprobarOperador(car)){
+			estado = 6;
+		} else {
+			estado = 0;
+			estado0(car);
+		}
 	}
 
-	private static void estado11(char car) {
+	private static void estado11(char car) throws OpcionErronea {
 		estado = 10;
 		estado10(car);
 	}
 
-	private static void estado10(char car) {
+	private static void estado10(char car) throws OpcionErronea {
 		estado9(car);		
 	}
 
-	private static void estado9(char car) {
+	private static void estado9(char car) throws OpcionErronea {
 		if (comprobarNumero(car)){
 			estado = 10;
-//		} else if(comprobarOperador(car)){
-//			estado = 6;
+		} else if(comprobarOperador(car)){
+			estado = 13;
 		} else if (comparar(car,"±")){
 			estado = 11;
+		} else {
+			throw new OpcionErronea();
 		}
 	}
 
-	private static void estado8(char car) {
+	private static void estado8(char car) throws OpcionErronea {
 		estado = 7;
 		estado7(car);
 	}
 
-	private static void estado7(char car) {
+	private static void estado7(char car) throws OpcionErronea {
 		if (comprobarNumero(car)){
 			//
 //		} else if(comprobarOperador(car)){
 //			estado = 6;
+		} else if (comparar(car,"=")){
+			estado = 12;
+		} else if (comprobarOperador(car)){
+			estado = 13;
 		} else if (comparar(car,".")){
 			estado = 9;
 		} else if (comparar(car,"±")){
 			estado = 8;
+		} else {
+			throw new OpcionErronea();
 		}		
 	}
 
-	private static void estado6(char car) {
+	private static void estado6(char car) throws OpcionErronea {
 		if (comprobarNumero(car)){
 			estado = 7;
 		} else if (comparar(car,"±")){
 			estado = 8;
 		} else if (comparar(car,".")){
 			estado = 9;
+		} else {
+			throw new OpcionErronea();
 		}
+		Visor.setText("0");;
 	}
 
-	private static void estado5(char car) {
+	private static void estado5(char car) throws OpcionErronea {
 		estado = 4;
 		estado4(car);		
 	}
 
-	private static void estado4(char car) {
+	private static void estado4(char car) throws OpcionErronea {
 		estado3(car);		
 	}
 
-	private static void estado3(char car) {
+	private static void estado3(char car) throws OpcionErronea {
 		if (comprobarNumero(car)){
 			estado = 4;
 		} else if(comprobarOperador(car)){
 			estado = 6;
 		} else if (comparar(car,"±")){
 			estado = 5;
+		} else {
+			throw new OpcionErronea();
 		}
 	}
 
-	private static void estado2(char car) {
+	private static void estado2(char car) throws OpcionErronea {
 		estado = 1;
 		estado1(car);
 	}
 
-	private static void estado1(char car) {
+	private static void estado1(char car) throws OpcionErronea {
 		if (comprobarNumero(car)){
 			//
 		} else if(comprobarOperador(car)){
@@ -217,8 +222,9 @@ public class Automata {
 			estado = 3;
 		} else if (comparar(car,"±")){
 			estado = 2;
-		}
-		
+		} else {
+			throw new OpcionErronea();
+		}		
 	}
 
 	private static void estado0(char car) throws OpcionErronea {
@@ -229,36 +235,13 @@ public class Automata {
 		} else {
 			throw new OpcionErronea();
 		}
-		
+		Visor.setText("0");
 	}
 	
-	public static boolean comparar(char car, String text){
+	private static boolean comparar(char car, String text){
 		String c = String.valueOf(car);
 		return c.equals(text);
 	}
-
-	public class Estado{
-		public Estado(){
-			
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -266,15 +249,14 @@ public class Automata {
 	
 	
 	private static void operar() throws OpcionErronea {
-		Operando2 = Double.parseDouble(Resultados.dameResultado());
-		Operando1 = Operando2;
+		Operando2 = Double.parseDouble(Visor.getText());
 		try{
 			double resultado = obtenerResultado();
 			Operando2 = resultado;
-			Resultados.setText(String.valueOf(Operando2));
+			Visor.setText(String.valueOf(Operando2));
 		} catch (OpcionErronea e){
 			Operando2 = 0d;
-			Resultados.setText(e.divCero());			
+			Visor.setText(e.divCero());			
 		}
 	}
 	
@@ -313,34 +295,28 @@ public class Automata {
 		}
 	}
 
-	private static void addOperacion(char Car){
-		Operando1 = Operando2;
-		Operando2 = Double.parseDouble(Resultados.dameResultado());
+	private static void addOperacion(char Car) {
+		Operando1 = Double.parseDouble(Visor.getText());	
+		System.out.println(Visor.getText());
+		System.out.println("Operando 1: "+Operando1);
 		operador = Car;
 		String resultado = String.valueOf(Car);
-		Resultados.setText(resultado);
-	}
-
-	private static void addOperacionPrimera(char Car) {
-		Operando1 = Double.parseDouble(Resultados.dameResultado());	
-		operador = Car;
-		String resultado = String.valueOf(Car);
-		Resultados.setText(resultado);
+		Visor.setText(resultado);
 	}
 
 
 
 	private static void cambiarSigno() {
 		try {
-			String aux = Resultados.dameResultado().substring(0,1);
+			String aux = Visor.getText().substring(0,1);
 			if (aux.equals("-")){
-				aux = Resultados.dameResultado().substring(1, Resultados.dameResultado().length());
-				Resultados.setText(aux);		
+				aux = Visor.getText().substring(1, Visor.getText().length());
+				Visor.setText(aux);		
 			} else {
-				Resultados.setText("-"+Resultados.dameResultado());
+				Visor.setText("-"+Visor.getText());
 			}
 		} catch (StringIndexOutOfBoundsException e){
-			Resultados.setText("0");
+			Visor.setText("0");
 		}
 	}
 
@@ -350,14 +326,14 @@ public class Automata {
 		String cadena = String.valueOf(Car);
 		boolean quitarCero = false;
 
-		if (Resultados.dameResultado().equals("0")){
+		if (Visor.getText().equals("0")){
 			quitarCero = true;
 		}
 		if (comprobarNumero(Car)){
 			if(quitarCero){
-				Resultados.setText(cadena);
+				Visor.setText(cadena);
 			} else {
-				Resultados.setText(Resultados.dameResultado()+cadena);
+				Visor.setText(Visor.getText()+cadena);
 			}
 		} else {
 			throw new OpcionErronea();
@@ -367,17 +343,17 @@ public class Automata {
 	private static void addComa(char Car) {
 		String cadena = String.valueOf(Car);
 		boolean quitarCero = false;
-		if (Resultados.dameResultado().equals("0") && !cadena.equals(".")){
+		if (Visor.getText().equals("0") && !cadena.equals(".")){
 			quitarCero = true;
 		}
 		if (comprobarNumeroComa(Car)){
 			if(quitarCero){
-				Resultados.setText(cadena);
+				Visor.setText(cadena);
 			} else {
-				if (Resultados.dameResultado().equals("")){
-					Resultados.setText("0"+cadena);
+				if (Visor.getText().equals("")){
+					Visor.setText("0"+cadena);
 				} else {
-					Resultados.setText(Resultados.dameResultado()+cadena);
+					Visor.setText(Visor.getText()+cadena);
 				}
 			}
 		}
@@ -396,14 +372,9 @@ public class Automata {
 		return Pattern.matches("[0-9]", cadena);
 	}
 	
-	public static boolean comprobarOperador(char Car){
+	private static boolean comprobarOperador(char Car){
 		String cadena = String.valueOf(Car);
 		return Pattern.matches("[+]|[-]|[*]|[/]", cadena);
-	}
-
-	
-	private static void operador(char car) {
-		operador = car;		
 	}
 	
 	public static void setEstado(byte est){

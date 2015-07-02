@@ -21,9 +21,12 @@ public class Automata {
 		System.out.println(Car);
 		comprobarVisorValido();
 		System.out.println("Antes de comprobar el estado:_"+estado);
+
 		comprobarEstado(Car);
+
 		System.out.println("Despues de comprobar el estado:_"+estado);
 		ejecutarEstado(Car);
+		
 		comprobarLongitud();
 		System.out.println("Estado a la salida "+estado);
 		
@@ -67,6 +70,10 @@ public class Automata {
 			case 12:
 				operar();
 				break;
+			case 13:
+				operar();
+				addOperacion(Car);
+				break;
 			default:
 				throw new OpcionErronea();
 		}
@@ -76,53 +83,66 @@ public class Automata {
 		if (!Utilidades.comprobarNumeroComaOperador(Visor.getText())){
 			Visor.setText("0");
 		}
-		System.out.println("IMCOMPLETO");
 	}
 
 
 	private static void comprobarEstado(char Car) throws OpcionErronea{
-		switch(estado){
-		case 0:
-			estado0(Car);
-			break;
-		case 1:
-			estado1(Car);
-			break;
-		case 2:
-			estado2(Car);
-			break;
-		case 3:
-			estado3(Car);
-			break;
-		case 4:
-			estado4(Car);
-			break;
-		case 5:
-			estado5(Car);
-			break;
-		case 6:
-			estado6(Car);
-			break;
-		case 7:
-			estado7(Car);
-			break;
-		case 8:
-			estado8(Car);
-			break;
-		case 9:
-			estado9(Car);
-			break;
-		case 10:
-			estado10(Car);
-			break;
-		case 11:
-			estado11(Car);
-			break;
-		case 12:
-			estado12(Car);
-			break;
+		try {
+			switch(estado){
+			case 0:
+				estado0(Car);
+				break;
+			case 1:
+				estado1(Car);
+				break;
+			case 2:
+				estado2(Car);
+				break;
+			case 3:
+				estado3(Car);
+				break;
+			case 4:
+				estado4(Car);
+				break;
+			case 5:
+				estado5(Car);
+				break;
+			case 6:
+				estado6(Car);
+				break;
+			case 7:
+				estado7(Car);
+				break;
+			case 8:
+				estado8(Car);
+				break;
+			case 9:
+				estado9(Car);
+				break;
+			case 10:
+				estado10(Car);
+				break;
+			case 11:
+				estado11(Car);
+				break;
+			case 12:
+				estado12(Car);
+				break;
+			case 13:
+				estado13(Car);
+				break;
+			}
+		} catch (OpcionErronea e) {
+			System.out.println("Excepcion evolucionando estado");
+			estado = 0;
+			throw new OpcionErronea();
 		}
 	} 
+	
+	private static void estado13(char car) throws OpcionErronea {
+		estado = 6;
+		estado6(car);
+	}
 
 	private static void estado12(char car) throws OpcionErronea {
 		if (Utilidades.comprobarOperador(car)){
@@ -163,13 +183,11 @@ public class Automata {
 
 	private static void estado7(char car) throws OpcionErronea {
 		if (Utilidades.comprobarNumero(car)){
-			//
-//		} else if(Utilidades.comprobarOperador(car)){
-//			estado = 6;
+			estado = 7;
 		} else if (Utilidades.comparar(car,"=")){
 			estado = 12;
-//		} else if (Utilidades.comprobarOperador(car)){
-//			estado = 13;
+		} else if (Utilidades.comprobarOperador(car)){
+			estado = 13;
 		} else if (Utilidades.comparar(car,".")){
 			estado = 9;
 		} else if (Utilidades.comparar(car,"±")){
@@ -191,7 +209,7 @@ public class Automata {
 		}*/ else {
 			throw new OpcionErronea();
 		}
-		Visor.setText("0");;
+		Visor.setText("0");
 	}
 
 	private static void estado5(char car) throws OpcionErronea {
@@ -222,7 +240,7 @@ public class Automata {
 
 	private static void estado1(char car) throws OpcionErronea {
 		if (Utilidades.comprobarNumero(car)){
-			//
+			estado = 1;
 		} else if(Utilidades.comprobarOperador(car)){
 			estado = 6;
 		} else if (Utilidades.comparar(car,".")){
@@ -239,18 +257,13 @@ public class Automata {
 			estado = 2;
 		} else if (Utilidades.comprobarNumero(car)){
 			estado = 1;
-		} else if (Utilidades.comparar(car,".")) {
+		} else if (Utilidades.comparar(car, ".")) {
 			estado = 3;
 		} else {
 			throw new OpcionErronea();
 		}
 		Visor.setText("0");
-	}
-	
-	
-	
-	
-	
+	}	
 	
 	private static void operar() throws OpcionErronea {
 		Operando2 = Double.parseDouble(Visor.getText());
@@ -322,7 +335,7 @@ public class Automata {
 //		if(!Utilidades.comprobarOperador(Car)){
 			Operando1 = Double.parseDouble(Visor.getText());			
 //		}	
-		System.out.println(Visor.getText());
+		System.out.println("EN el visor: "+Visor.getText());
 		System.out.println("Operando 1: "+Operando1);
 		operador = Car;
 		String resultado = String.valueOf(Car);

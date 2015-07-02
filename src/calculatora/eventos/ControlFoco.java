@@ -26,7 +26,9 @@ public class ControlFoco implements FocusListener {
 	 */
 	public void focusGained(FocusEvent EventoQueLlega){
 		JButton boton = (JButton) EventoQueLlega.getSource(); 
-		boton.setBackground(Color.green);
+		if (boton.getBackground() != Color.RED) {
+			boton.setBackground(Color.green);
+		}
 	}
 	/**
 	 * Cuando sacamos el foco del botón vuelve al color original.

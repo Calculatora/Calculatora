@@ -29,18 +29,23 @@ public class BloqueBotones  extends Bloque {
 		return Botones;
 	}
 
-	public void PonerRojo(char car) {
+	public void PonerFocoRojo(char car) {
 		String text = String.valueOf(car);
 		for (int i = 0; i < Botones.length; i++){
 			if (Botones[i].getText().equals(text)){
+				Botones[i].requestFocus();
+				System.out.println("DD");
 				Botones[i].setBackground(Color.RED);
 			}
 		}		
 	}
-
-	public void quitarRojo() {
+	
+	public void ponerFoco(char car){
+		String text = String.valueOf(car);
 		for (int i = 0; i < Botones.length; i++){
-			Botones[i].setBackground(color);
-		}	
+			if (Botones[i].getText().equals(text)){
+				Botones[i].requestFocus();;
+			}
+		}
 	}
 }

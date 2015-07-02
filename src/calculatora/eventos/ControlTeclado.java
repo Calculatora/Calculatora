@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 
 import calculatora.Automata;
+import calculatora.AutomataEspecial;
 import calculatora.OpcionErronea;
 import calculatora.paneles.Resultados;
 import calculatora.superClass.BloqueBotones;
@@ -44,6 +45,11 @@ public class ControlTeclado extends KeyAdapter {
     	if(EventoQueLlega.getKeyCode() == 32){
     		JButton boton = (JButton) EventoQueLlega.getSource();
     		Llamadas.llamoAutomata(boton);    		
+    	} else if (EventoQueLlega.getKeyCode() == 27) {
+			char Car = 'C';
+			int i = 2; //Bloque de especial
+			AutomataEspecial.limpiarOperaciones();
+			bloques[i].ponerFoco(Car);
     	} else if (EventoQueLlega.getKeyCode() == 10) {
 			char Car = '=';
 			int i = 0; //Bloque de digitos

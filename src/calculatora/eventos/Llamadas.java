@@ -39,8 +39,7 @@ public class Llamadas {
 			AutomataEspecial.recuperarMemoria();
 		} else { 
 			llamadaAutomata(boton);
-		}
-		
+		}		
 	}
 	
 	private static void llamadaAutomata(JButton boton){

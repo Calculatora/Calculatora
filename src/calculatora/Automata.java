@@ -152,6 +152,11 @@ public class Automata {
 		}
 	} 
 
+	/**
+	 * El método estado13 llamada al metodo estado 12.
+	 * @param car
+	 * @throws OpcionErronea
+	 */
 	private static void estado13(char car) throws OpcionErronea {
 		estado = 6;
 		estado6(car);

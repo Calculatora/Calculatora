@@ -7,7 +7,6 @@ import javax.swing.JButton;
 
 import calculatora.Automata;
 import calculatora.OpcionErronea;
-import calculatora.Utilidades;
 import calculatora.paneles.Resultados;
 import calculatora.superClass.BloqueBotones;
 
@@ -17,15 +16,12 @@ import calculatora.superClass.BloqueBotones;
  * @since 2015/06/25
  */
 public class ControlTeclado extends KeyAdapter {
-	static BloqueBotones digitos;
-	static BloqueBotones operadores;
-	static BloqueBotones especiales;
+	static BloqueBotones[] bloques;
 
-	public ControlTeclado(BloqueBotones instanciaDig,
-			BloqueBotones instanciaOpe, BloqueBotones instanciaEspeciales) {
-		digitos = instanciaDig;
-		operadores = instanciaOpe;
-		especiales = instanciaEspeciales;
+	public ControlTeclado(BloqueBotones dig,
+			BloqueBotones ope, BloqueBotones esp) {
+		BloqueBotones[] tmpbloques = {dig,ope,esp};
+		bloques = tmpbloques;
 	}
 
 	public ControlTeclado() {
@@ -45,38 +41,33 @@ public class ControlTeclado extends KeyAdapter {
 	 */
     @Override
     public void keyPressed(KeyEvent EventoQueLlega) {
-    	digitos.quitarRojo();
-    	operadores.quitarRojo();
-    	especiales.quitarRojo();
     	if(EventoQueLlega.getKeyCode() == 32){
     		JButton boton = (JButton) EventoQueLlega.getSource();
     		Llamadas.llamoAutomata(boton);    		
     	} else if (EventoQueLlega.getKeyCode() == 10) {
 			char Car = '=';
+			int i = 0; //Bloque de digitos
     		try { 
     			Automata.CaracterIntroducido(Car); 
+    			bloques[i].ponerFoco(Car);
     		} catch(OpcionErronea er) {
     			Resultados.setText(er.mensajeError());
+    			bloques[i].PonerFocoRojo(Car);
     		}
     	} else {
     		char Car = EventoQueLlega.getKeyChar();
-    		if (Utilidades.comprobarNumeroComa(Car)) {
-	    		try { 
-	    			Automata.CaracterIntroducido(Car); 
-	    		} catch(OpcionErronea er) {
-	    			Resultados.setText(er.mensajeError());
-	    			digitos.PonerRojo(Car);
-	    		}
-    		} else if (Utilidades.comprobarOperador(Car)){
-	    		try { 
-	    			Automata.CaracterIntroducido(Car); 
-	    		} catch(OpcionErronea er) {
-	    			Resultados.setText(er.mensajeError());
-	    			operadores.PonerRojo(Car);
-	    		}
+    		try { 
+    			Automata.CaracterIntroducido(Car);
+    			for (int i = 0; i < bloques.length; i++){
+    				bloques[i].ponerFoco(Car);
+    			}
+    		} catch(OpcionErronea er) {
+    			Resultados.setText(er.mensajeError());
+    			for (int i = 0; i < bloques.length; i++){
+    				bloques[i].PonerFocoRojo(Car);
+    			}
     		}
     	}
-
     }
 
     /**

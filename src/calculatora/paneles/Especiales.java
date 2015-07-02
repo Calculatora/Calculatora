@@ -21,8 +21,9 @@ public class Especiales extends BloqueBotones{
 		super();
 	}
 	
-	public Especiales(Color color){
+	public Especiales(Color col){
 		super();
+		color = col;
 		GridLayout LayoutBotones = new GridLayout(1,4);
 		MiPanel.setLayout(LayoutBotones);
 		

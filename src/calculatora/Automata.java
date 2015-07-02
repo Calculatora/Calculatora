@@ -28,16 +28,11 @@ public class Automata {
 	 * @throws OpcionErronea
 	 */
 	public static void CaracterIntroducido(char Car) throws OpcionErronea {
-		System.out.println(Car);
 		comprobarVisorValido();
-		System.out.println("Antes de comprobar el estado:_"+estado);
 		evolucionarEstado(Car);
-		System.out.println("Despues de comprobar el estado:_"+estado);
 		ejecutarEstado(Car);
 		
-		comprobarLongitud();
-		System.out.println("Estado a la salida "+estado);
-		
+		comprobarLongitud();		
 	}
 	/**
 	 * Ejecuta el mensaje que ha mandado el usuario,
@@ -346,12 +341,6 @@ public class Automata {
 		try{
 			double resultado = obtenerResultado();
 			Operando2 = resultado;
-			System.out.println("==================================");
-			System.out.println(resultado);
-			System.out.println("==================================");
-			/**if(String.valueOf(Operando2).equals("NaN")|| String.valueOf(Operando2).equals("Infinity") ){
-				Visor.setText("Resultado indefinido");
-			}*/
 			Visor.setText(String.valueOf(Operando2));
 		} catch (OpcionErronea e){
 			Operando2 = 0d;
@@ -381,7 +370,6 @@ public class Automata {
 				try{
 					resultado = Operando1 / Operando2;
 				} catch (Exception e){
-					System.out.println("Division erronea");
 					throw new OpcionErronea();
 				}
 				break;
@@ -418,12 +406,7 @@ public class Automata {
 	 * @param Car: caracter capturado desde ratón o teclado.
 	 */
 	private static void addOperador(char Car) {
-//		System.out.println(Visor.getText());
-//		if(!Utilidades.comprobarOperador(Car)){
-			Operando1 = Double.parseDouble(Visor.getText());			
-//		}	
-		System.out.println("EN el visor: "+Visor.getText());
-		System.out.println("Operando 1: "+Operando1);
+		Operando1 = Double.parseDouble(Visor.getText());	
 		operador = Car;
 		String resultado = String.valueOf(Car);
 		Visor.setText(resultado);

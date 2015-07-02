@@ -145,10 +145,9 @@ public class Automata {
 		if (Utilidades.comprobarNumero(car)){
 			estado = 10;
 		} else if(Utilidades.comprobarOperador(car)){
-			if(car == '='){
-				estado = 12;
-			}
 			estado = 13;
+		} else if (Utilidades.comparar(car,"=")){
+			estado = 12;
 		} else if (Utilidades.comparar(car,"±")){
 			estado = 11;
 		} else {
@@ -164,12 +163,12 @@ public class Automata {
 	private static void estado7(char car) throws OpcionErronea {
 		if (Utilidades.comprobarNumero(car)){
 			//
-		} else if(Utilidades.comprobarOperador(car)){
-			estado = 6;
+//		} else if(Utilidades.comprobarOperador(car)){
+//			estado = 6;
 		} else if (Utilidades.comparar(car,"=")){
 			estado = 12;
-		} else if (Utilidades.comprobarOperador(car)){
-			estado = 13;
+//		} else if (Utilidades.comprobarOperador(car)){
+//			estado = 13;
 		} else if (Utilidades.comparar(car,".")){
 			estado = 9;
 		} else if (Utilidades.comparar(car,"±")){
@@ -301,13 +300,27 @@ public class Automata {
 	
 	private static void comprobarLongitud() {
 		if (Visor.getText().length() > LONG_DISPLAY ){
-			Visor.setText(Visor.getText().substring(0,LONG_DISPLAY));
+			if (Utilidades.compruebaNotacionCientifica(Visor.getText())){
+				try {
+					int posE = Visor.getText().indexOf("E");
+					String primerFragmento = Visor.getText().substring(0,posE);
+					String segundoFragmento = Visor.getText().substring(posE,Visor.getText().length());
+					int longitudDebidaPrimerFragmento = LONG_DISPLAY - segundoFragmento.length();
+					Visor.setText(primerFragmento.substring(0,longitudDebidaPrimerFragmento)+segundoFragmento);
+				} catch (Exception e){
+				}
+				
+			} else {
+				Visor.setText(Visor.getText().substring(0,LONG_DISPLAY));
+			}
 		}
 	}
 
 	private static void addOperacion(char Car) {
-		
-		Operando1 = Double.parseDouble(Visor.getText());
+//		System.out.println(Visor.getText());
+//		if(!Utilidades.comprobarOperador(Car)){
+			Operando1 = Double.parseDouble(Visor.getText());			
+//		}	
 		System.out.println(Visor.getText());
 		System.out.println("Operando 1: "+Operando1);
 		operador = Car;

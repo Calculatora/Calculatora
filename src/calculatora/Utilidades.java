@@ -26,7 +26,7 @@ public class Utilidades {
 		return c.equals(text);
 	}
 	
-	public static boolean notacionCientifica(String text){
-		return Pattern.matches(".+e.+", text);
+	public static boolean compruebaNotacionCientifica(String text){
+		return Pattern.matches(".+E.+", text);
 	}
 }

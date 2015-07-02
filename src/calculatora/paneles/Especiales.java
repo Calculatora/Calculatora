@@ -50,8 +50,10 @@ public class Especiales extends BloqueBotones{
 		
 		for (int i = 0; i < Botones.length; i++){
 			Botones[i].setPreferredSize(new Dimension(55, 55));
-			Botones[i].setFont (fuente);				
+			Botones[i].setFont (fuente);
 		}
+		
+		configBotones();
 		
 	}
 }

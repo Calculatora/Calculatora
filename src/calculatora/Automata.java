@@ -145,6 +145,9 @@ public class Automata {
 		if (Utilidades.comprobarNumero(car)){
 			estado = 10;
 		} else if(Utilidades.comprobarOperador(car)){
+			if(car == '='){
+				estado = 12;
+			}
 			estado = 13;
 		} else if (Utilidades.comparar(car,"±")){
 			estado = 11;

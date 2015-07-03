@@ -38,18 +38,19 @@ public class Digitos extends BloqueBotones{
 		
 		Botones = new JButton[NUM_DIGITOS];
 
-		Botones[0] = new JButton("=");
-		Botones[1] = new JButton(".");
-		Botones[2] = new JButton("0");
-		Botones[3] = new JButton("1");
-		Botones[4] = new JButton("2");
-		Botones[5] = new JButton("3");
-		Botones[6] = new JButton("4");
-		Botones[7] = new JButton("5");
-		Botones[8] = new JButton("6");
-		Botones[9] = new JButton("7");
-		Botones[10] = new JButton("8");
-		Botones[11] = new JButton("9");
+		
+		Botones[11] = new JButton("=");
+		Botones[10] = new JButton(".");
+		Botones[9] = new JButton("0");
+		Botones[8] = new JButton("1");
+		Botones[7] = new JButton("2");
+		Botones[6] = new JButton("3");
+		Botones[5] = new JButton("4");
+		Botones[4] = new JButton("5");
+		Botones[3] = new JButton("6");
+		Botones[2] = new JButton("7");
+		Botones[1] = new JButton("8");
+		Botones[0] = new JButton("9");
 
 		Font fuente=new Font("Dialog", Font.BOLD, 36);
 		for (int i = Botones.length - 1; i >= 0; i--){

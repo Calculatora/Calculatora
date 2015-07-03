@@ -32,8 +32,8 @@ public class Automata {
 		comprobarVisorValido();
 		evolucionarEstado(Car);
 		ejecutarEstado(Car);
-		
-		comprobarLongitud();		
+		comprobarVisor();
+		//comprobarLongitud();		
 	}
 	/**
 	 * Ejecuta el mensaje que ha mandado el usuario,
@@ -380,10 +380,17 @@ public class Automata {
 		return resultado;
 	}
 	
+	private static void dimensionTExto(){
+		int longt = Visor.getText().length();
+		if(longt > LONG_DISPLAY){
+			
+		}
+	}
+	
 	/**
 	 * 	Comprueba y ajusta al visor la longitud del número que devuelve.
 	 */
-	
+		
 	private static void comprobarLongitud() {
 		if (Visor.getText().length() > LONG_DISPLAY ){
 			if (Utilidades.compruebaNotacionCientifica(Visor.getText())){
@@ -402,6 +409,24 @@ public class Automata {
 		}
 	}
 	
+	
+	
+	/**
+	 * Metodo que comprueba las diferentes operaciones que no se pueden ralizar con 0.
+	 */
+	private static void comprobarVisor(){
+		if(Visor.getText().compareTo("NaN")==0){
+			Visor.setText("Indefinido");
+		}
+		else if(Visor.getText().compareTo("Infinity")==0){
+			Visor.setText("No divisible entre 0");
+		}
+		else{
+			comprobarLongitud();
+		}
+	}
+
+
 	/**
 	 * Añade operador.
 	 * @param Car: caracter capturado desde ratón o teclado.

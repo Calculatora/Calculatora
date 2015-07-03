@@ -7,9 +7,6 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 
-import calculatora.eventos.ControlFoco;
-import calculatora.eventos.ControlRaton;
-import calculatora.eventos.ControlTeclado;
 import calculatora.superClass.BloqueBotones;
 /**
  * Clase que pone operadores ("+", "-", "*" y "/") a los botones.

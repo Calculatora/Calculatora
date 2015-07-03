@@ -19,8 +19,8 @@ public class Automata {
 	 * Constructor que inicializa el objeto.
 	 * @param Visor
 	 */
-	public Automata(JTextField Visor) {
-		this.Visor = Visor;
+	public Automata(JTextField vis) {
+		Visor = vis;
 	}
 
 	/**

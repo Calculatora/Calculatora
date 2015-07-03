@@ -42,7 +42,7 @@ public class GUICalculadora {
 		MiMarco.addKeyListener(new ControlTeclado(InstanciaDigitos,InstanciaOperadores,InstanciaEspeciales));
 
 		MiMarco.setSize(360,480);
-		MiMarco.setTitle("Calculadora");  
+		MiMarco.setTitle("Calculatora");  
 		MiMarco.setVisible(true);
 		MiMarco.setResizable(false);
 		

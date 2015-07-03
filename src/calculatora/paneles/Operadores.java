@@ -45,13 +45,11 @@ public class Operadores extends BloqueBotones{
 
 		for (int i = 0; i < Botones.length; i++){
 			MiPanel.add(Botones[i]);
-			Botones[i].addMouseListener(new ControlRaton(color));
-			Botones[i].addFocusListener(new ControlFoco(color));
-			Botones[i].addKeyListener(new ControlTeclado());
-			Botones[i].setBackground(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));
 			Botones[i].setFont (fuente);		
 		}
+		
+		configBotones();
 	}
 	
 }

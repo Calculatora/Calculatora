@@ -13,8 +13,15 @@ import calculatora.paneles.Operadores;
 import calculatora.paneles.Resultados;
 import calculatora.superClass.BloqueBotones;
 
-
+/**
+ * Establece la interfaz del programa.
+ * @author Cristina Vila.
+ *
+ */
 public class GUICalculadora {
+	/**
+	 * Constructor que inicializa el objeto.
+	 */
 	public GUICalculadora() {
 		JFrame MiMarco = new JFrame(); 
 		Color colorDigitos = new Color(213,249,235);
@@ -35,7 +42,7 @@ public class GUICalculadora {
 		MiMarco.addKeyListener(new ControlTeclado(InstanciaDigitos,InstanciaOperadores,InstanciaEspeciales));
 
 		MiMarco.setSize(360,480);
-		MiMarco.setTitle("Calculadora");  
+		MiMarco.setTitle("Calculatora");  
 		MiMarco.setVisible(true);
 		MiMarco.setResizable(false);
 		

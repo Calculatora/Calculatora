@@ -54,12 +54,10 @@ public class Digitos extends BloqueBotones{
 		Font fuente=new Font("Dialog", Font.BOLD, 36);
 		for (int i = Botones.length - 1; i >= 0; i--){
 			MiPanel.add(Botones[i]);
-			Botones[i].addMouseListener(new ControlRaton(color));
-			Botones[i].addFocusListener(new ControlFoco(color));
-			Botones[i].addKeyListener(new ControlTeclado());
-			Botones[i].setBackground(color);
 			Botones[i].setPreferredSize(new Dimension(80, 80));
 			Botones[i].setFont (fuente);	
 		}
+		
+		configBotones();
 	}
 }

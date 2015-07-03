@@ -11,16 +11,26 @@ import calculatora.eventos.ControlFoco;
 import calculatora.eventos.ControlRaton;
 import calculatora.eventos.ControlTeclado;
 import calculatora.superClass.BloqueBotones;
-
+/**
+ * Bloque de botones especiales
+ * @author jfernandezpe
+ *
+ */
 public class Especiales extends BloqueBotones{
 	
 	private final int NUM_BOTONES = 6;
 
-	
+	/**
+	 * Constructor.
+	 */
 	public Especiales(){
 		super();
 	}
 	
+	/**
+	 * Constructor.
+	 * @param col
+	 */
 	public Especiales(Color col){
 		super();
 		color = col;
@@ -39,14 +49,11 @@ public class Especiales extends BloqueBotones{
 		Font fuente=new Font("Dialog", Font.BOLD, 14);
 		
 		for (int i = 0; i < Botones.length; i++){
-			MiPanel.add(Botones[i]);
-			Botones[i].addMouseListener(new ControlRaton(color));
-			Botones[i].addFocusListener(new ControlFoco(color));
-			Botones[i].addKeyListener(new ControlTeclado());
-			Botones[i].setBackground(color);
 			Botones[i].setPreferredSize(new Dimension(55, 55));
-			Botones[i].setFont (fuente);				
+			Botones[i].setFont (fuente);
 		}
+		
+		configBotones();
 		
 	}
 }

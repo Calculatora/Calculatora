@@ -3,7 +3,7 @@ package calculatora;
 import calculatora.paneles.Resultados;
 
 /**
- * Realiza las funciones de los botones especiales (memoria, borrar y cambiar el signo).
+ * Realiza las funciones de los botones especiales (memoria y borrar).
  * 
  * @author jfernandezpe
  * @since 2015/06/25
@@ -15,7 +15,7 @@ public class AutomataEspecial {
 	
 	/**
 	 * Limpia el número el último número completo con el que se está operando
-	 * (no borra todo el número, no solo el último digito)
+	 * (borra todo el número, no solo el último digito)
 	 */
 	public static void limpiarUltimoNumero() {
 		Resultados.setText("0");		
@@ -29,20 +29,6 @@ public class AutomataEspecial {
 		Automata.setEstado((byte) 0);
 	}
 
-//	/**
-//	 * Cambia el signo de número en display
-//	 */
-//	public static void cambiarSigno() {
-//		try {
-//			String sNumero = Resultados.dameResultado();
-//			Double dNumero = Double.parseDouble(sNumero);
-//			dNumero = dNumero * (-1);
-//			sNumero = Double.toString(dNumero);
-//			Resultados.setText(sNumero);
-//		} catch (NumberFormatException e){
-//			limpiarUltimoNumero();
-//		}
-//	}
 
 	/**
 	 * Guarda el número en display en memoria
